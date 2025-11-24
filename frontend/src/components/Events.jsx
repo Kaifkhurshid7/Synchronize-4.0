@@ -82,16 +82,24 @@ const Events = () => {
     });
   };
 
-  const handleCardClick = (link) => {
-    window.location.href = link;
+  const handleCardClick = () => {
+    window.location.href = '/events';
   };
 
   return (
     <section id="events" ref={sectionRef} className="h-screen overflow-hidden relative flex flex-col justify-center z-20">
       <div className="container mx-auto px-6 mb-10 flex justify-between items-end">
-        <h2 className="text-4xl md:text-6xl font-display font-bold text-white">
-          Featured <span className="text-cyan-400">Events</span>
-        </h2>
+        <div>
+          <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-4">
+            Featured <span className="text-cyan-400">Events</span>
+          </h2>
+          <button 
+            onClick={() => window.location.href = '/events'}
+            className="px-6 py-2 bg-cyan-400/10 hover:bg-cyan-400/20 border border-cyan-400 text-cyan-400 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105"
+          >
+            View All Events →
+          </button>
+        </div>
         {/* Progress Bar */}
         <div className="w-48 h-1 bg-white/10 rounded-full overflow-hidden hidden md:block">
           <div ref={progressRef} className="h-full bg-cyan-400 w-0 shadow-[0_0_15px_rgba(0,242,255,0.6)]"></div>
@@ -106,7 +114,7 @@ const Events = () => {
             style={{ transformStyle: 'preserve-3d' }}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            onClick={() => handleCardClick(event.link)}
+            onClick={handleCardClick}
           >
             <img 
               src={event.image} 

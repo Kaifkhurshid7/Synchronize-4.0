@@ -6,7 +6,7 @@ import { Linkedin, Twitter, Github, ArrowLeft } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Team = () => {
+const TeamPage = () => {
   const [loading, setLoading] = useState(true);
   const titleRef = useRef(null);
   const cardsRef = useRef([]);
@@ -22,10 +22,8 @@ const Team = () => {
   ];
 
   useEffect(() => {
-    // Scroll to top on mount
     window.scrollTo(0, 0);
 
-    // Loader animation
     const loaderTimeline = gsap.timeline({
       onComplete: () => setLoading(false)
     });
@@ -42,13 +40,11 @@ const Team = () => {
 
   useEffect(() => {
     if (!loading) {
-      // Title animation
       gsap.fromTo(titleRef.current,
         { opacity: 0, y: -30 },
         { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }
       );
 
-      // Stagger cards animation
       gsap.fromTo(cardsRef.current,
         { opacity: 0, y: 30, scale: 0.9 },
         {
@@ -66,7 +62,6 @@ const Team = () => {
 
   return (
     <>
-      {/* Loading Screen */}
       {loading && (
         <div 
           ref={loaderRef}
@@ -84,7 +79,6 @@ const Team = () => {
       )}
 
       <div className="min-h-screen pt-24 pb-12 px-6 relative z-10 overflow-hidden">
-        {/* Animated background elements */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }} />
       
@@ -94,7 +88,6 @@ const Team = () => {
             <h1 className="text-5xl md:text-7xl font-display font-bold text-white relative">
               Meet the <span className="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-purple-400 to-cyan-400 animate-gradient-text">Team</span>
               
-              {/* Decorative line */}
               <div className="absolute -bottom-4 left-0 w-32 h-1 bg-linear-to-r from-cyan-400 to-purple-400 rounded-full" />
             </h1>
             <p className="text-gray-400 mt-8 text-lg">The brilliant minds behind Synchronize 4.0</p>
@@ -119,13 +112,9 @@ const Team = () => {
               ref={el => cardsRef.current[index] = el}
               className="group relative cursor-pointer glass-card p-8 rounded-2xl flex flex-col items-center text-center hover:border-cyan-400/50 transition-all duration-500 overflow-hidden"
             >
-              {/* Animated background gradient */}
               <div className={`absolute inset-0 bg-linear-to-br ${member.color === 'cyan' ? 'from-cyan-500/0 to-cyan-500/10' : 'from-purple-500/0 to-purple-500/10'} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               
-
-
               <div className="relative z-10 flex flex-col items-center">
-                {/* Image with enhanced effects */}
                 <div className="relative mb-6">
                   <div className={`absolute inset-0 rounded-full ${member.color === 'cyan' ? 'bg-cyan-400' : 'bg-purple-400'} blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500`} />
                   
@@ -136,24 +125,18 @@ const Team = () => {
                       className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
                     />
                     
-                    {/* Overlay gradient on hover */}
                     <div className={`absolute inset-0 bg-linear-to-t ${member.color === 'cyan' ? 'from-cyan-400/20' : 'from-purple-400/20'} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                   </div>
-
-
                 </div>
 
-                {/* Name with gradient effect */}
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:scale-105 transition-transform duration-300">
                   {member.name}
                 </h3>
                 
-                {/* Role badge */}
                 <div className={`px-4 py-2 rounded-full ${member.color === 'cyan' ? 'bg-cyan-400/10 border border-cyan-400/30 text-cyan-400' : 'bg-purple-400/10 border border-purple-400/30 text-purple-400'} font-sans tracking-wider uppercase text-xs font-semibold group-hover:shadow-lg transition-all duration-300`}>
                   {member.role}
                 </div>
 
-                {/* Social icons */}
                 <div className="flex space-x-3 mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                   <a 
                     href="#"
@@ -178,7 +161,6 @@ const Team = () => {
                 </div>
               </div>
 
-              {/* Corner accents */}
               <div className={`absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 ${member.color === 'cyan' ? 'border-cyan-400/20' : 'border-purple-400/20'} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
               <div className={`absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 ${member.color === 'cyan' ? 'border-cyan-400/20' : 'border-purple-400/20'} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
             </div>
@@ -208,4 +190,4 @@ const Team = () => {
   );
 };
 
-export default Team;
+export default TeamPage;

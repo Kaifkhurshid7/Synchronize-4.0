@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ArrowLeft, ZoomIn, X } from 'lucide-react';
 
-const Gallery = () => {
+const GalleryPage = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(null);
   const titleRef = useRef(null);
   const imagesRef = useRef([]);
   const loaderRef = useRef(null);
 
-  // Pinterest-style masonry with varied heights
   const galleryImages = [
     { id: 1, url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600", title: "Opening Ceremony", category: "Events", height: "h-64" },
     { id: 2, url: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=1000", title: "Tech Workshop", category: "Workshops", height: "h-80" },
@@ -98,7 +97,6 @@ const Gallery = () => {
       )}
 
       <div className="min-h-screen pt-24 pb-12 px-6 relative z-10 overflow-hidden">
-        {/* Animated background */}
         <div className="absolute top-20 right-10 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute bottom-20 left-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1.5s' }} />
         
@@ -124,7 +122,6 @@ const Gallery = () => {
             </Link>
           </div>
 
-          {/* Pinterest-style Masonry Grid - No Blank Spaces */}
           <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
             {galleryImages.map((image, index) => (
               <div 
@@ -140,21 +137,17 @@ const Gallery = () => {
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
                   
-                  {/* Gradient overlay always visible */}
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
                   
-                  {/* Info overlay on hover */}
                   <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-3 md:p-5">
                     <span className="text-[10px] md:text-xs uppercase tracking-wider text-purple-400 font-semibold mb-1">{image.category}</span>
                     <h3 className="text-sm md:text-lg lg:text-xl font-display font-bold text-white leading-tight">{image.title}</h3>
                   </div>
 
-                  {/* Zoom Icon */}
                   <div className="absolute top-2 right-2 md:top-3 md:right-3 w-8 h-8 md:w-10 md:h-10 bg-black/30 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:bg-purple-500/80">
                     <ZoomIn className="w-4 h-4 md:w-5 md:h-5 text-white" />
                   </div>
 
-                  {/* Category badge */}
                   <div className="absolute top-2 left-2 md:top-3 md:left-3 px-2 py-1 md:px-3 md:py-1.5 bg-black/50 backdrop-blur-md rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <span className="text-[10px] md:text-xs text-white font-semibold">{image.category}</span>
                   </div>
@@ -164,7 +157,6 @@ const Gallery = () => {
           </div>
         </div>
 
-        {/* Lightbox Modal */}
         {selectedImage && (
           <div 
             className="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex items-center justify-center p-6"
@@ -213,4 +205,4 @@ const Gallery = () => {
   );
 };
 
-export default Gallery;
+export default GalleryPage;

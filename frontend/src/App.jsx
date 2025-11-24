@@ -8,8 +8,9 @@ import Timeline from './components/Timeline';
 import Contact from './components/Contact';
 import Sponsors from './components/Sponsors';
 import Preloader from './components/Preloader';
-import Team from './components/Team';
-import Gallery from './components/Gallery';
+import TeamPage from './pages/TeamPage';
+import GalleryPage from './pages/GalleryPage';
+import EventsPage from './pages/EventsPage';
 
 // Scroll to hash component
 function ScrollToHash() {
@@ -56,12 +57,17 @@ function App() {
         <Route path="/" element={<Home loading={loading} setLoading={setLoading} />} />
         <Route path="/team" element={
           <Layout>
-            <Team />
+            <TeamPage />
           </Layout>
         } />
         <Route path="/gallery" element={
           <Layout>
-            <Gallery />
+            <GalleryPage />
+          </Layout>
+        } />
+        <Route path="/events" element={
+          <Layout>
+            <EventsPage />
           </Layout>
         } />
       </Routes>

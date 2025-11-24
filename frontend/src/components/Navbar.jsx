@@ -57,7 +57,7 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: "Events", path: "/#events" },
+    { name: "Events", path: "/events" },
     { name: "Schedule", path: "/#schedule" },
     { name: "Sponsors", path: "/#sponsors" },
     { name: "Team", path: "/team" },

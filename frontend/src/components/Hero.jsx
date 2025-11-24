@@ -48,11 +48,8 @@ const Hero = ({ startAnimation }) => {
           <MagneticButton className="cursor-pointer px-10 py-4 bg-cyan-400 text-black font-bold rounded-full hover:bg-cyan-50 transition-all shadow-[0_0_20px_rgba(255,255,255,0.4)]">
             REGISTER NOW
           </MagneticButton>
-          <MagneticButton className="cursor-pointer px-10 py-4 border-2 border-cyan-400 text-cyan-400 font-bold rounded-full hover:bg-cyan-400/10 transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(0,242,255,0.3)]">
-            EXPLORE EVENTS
-          </MagneticButton>
           <Link to="/gallery">
-            <MagneticButton className="cursor-pointer px-10 py-4 border-2 border-purple-400 text-purple-400 font-bold rounded-full hover:bg-purple-400/10 transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+            <MagneticButton className="cursor-pointer px-10 py-4 border-2 border-cyan-400 text-cyan-400 font-bold rounded-full hover:bg-cyan-400/10 transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.3)]">
               <span className="flex items-center gap-2">
                 VIEW GALLERY
                 <Images className="w-5 h-5" />
