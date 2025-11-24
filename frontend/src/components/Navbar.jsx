@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router';
 import gsap from 'gsap';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaXmark } from 'react-icons/fa6';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -82,7 +82,7 @@ const Navbar = () => {
           className="relative z-50 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition-all duration-300 cursor-pointer group active:scale-95"
         >
           {isOpen ? (
-            <FaTimes size={20} className="sm:w-6 sm:h-6 group-hover:text-red-500 group-hover:rotate-90 transition-all duration-300" />
+            <FaXmark size={20} className="sm:w-6 sm:h-6 group-hover:text-red-500 group-hover:rotate-90 transition-all duration-300" />
           ) : (
             <div className="flex flex-col justify-center items-end gap-1.5 w-5 sm:w-6">
               <span className="block w-full h-0.5 bg-white group-hover:bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>

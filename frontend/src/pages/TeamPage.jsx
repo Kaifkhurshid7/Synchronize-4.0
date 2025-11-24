@@ -14,12 +14,12 @@ const TeamPage = () => {
   const loaderRef = useRef(null);
 
   const teamMembers = [
-    { name: "Alex Johnson", role: "Lead Organizer", image: "https://randomuser.me/api/portraits/men/32.jpg", color: "cyan" },
-    { name: "Sarah Williams", role: "Tech Lead", image: "https://randomuser.me/api/portraits/women/44.jpg", color: "purple" },
-    { name: "Michael Chen", role: "Design Head", image: "https://randomuser.me/api/portraits/men/22.jpg", color: "cyan" },
-    { name: "Emily Davis", role: "Marketing Lead", image: "https://randomuser.me/api/portraits/women/28.jpg", color: "purple" },
-    { name: "David Miller", role: "Logistics", image: "https://randomuser.me/api/portraits/men/54.jpg", color: "cyan" },
-    { name: "Jessica Taylor", role: "Sponsorships", image: "https://randomuser.me/api/portraits/women/65.jpg", color: "purple" }
+    { name: "Kaif Khurshid", role: "Lead Organizer", image: "https://randomuser.me/api/portraits/men/32.jpg", color: "cyan" },
+    { name: "Ishan Roy", role: "Tech Lead", image: "https://randomuser.me/api/portraits/men/44.jpg", color: "purple" },
+    { name: "Manish Nanda", role: "Design Head", image: "https://randomuser.me/api/portraits/men/22.jpg", color: "cyan" },
+    { name: "Simran Osta", role: "Marketing Lead", image: "https://randomuser.me/api/portraits/women/28.jpg", color: "purple" },
+    { name: "Suraj Maharana", role: "Logistics", image: "https://randomuser.me/api/portraits/men/54.jpg", color: "cyan" },
+    { name: "Rhea Bachheti", role: "Sponsorships", image: "https://randomuser.me/api/portraits/women/65.jpg", color: "purple" }
   ];
 
   useEffect(() => {
