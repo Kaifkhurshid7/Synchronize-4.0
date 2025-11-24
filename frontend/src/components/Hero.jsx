@@ -31,7 +31,7 @@ const Hero = ({ startAnimation }) => {
       
       {/* Overlay Content */}
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center pointer-events-none px-4">
-        <div ref={textRef} className="text-center mb-8 flex flex-col md:block py-4">
+        <div ref={textRef} className="text-center mb-8 flex flex-col md:block py-4 z-100">
           <h1 className="text-7xl md:text-9xl font-display font-black italic tracking-tighter text-white inline-block drop-shadow-[0_0_40px_rgba(255,255,255,0.4)]">
             SYNCHRONIZE
           </h1>
@@ -52,9 +52,11 @@ const Hero = ({ startAnimation }) => {
             EXPLORE EVENTS
           </MagneticButton>
           <Link to="/gallery">
-            <MagneticButton className="cursor-pointer px-10 py-4 border-2 border-purple-400 text-purple-400 font-bold rounded-full hover:bg-purple-400/10 transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.3)] flex items-center gap-2">
-              <Images className="w-5 h-5" />
-              VIEW GALLERY
+            <MagneticButton className="cursor-pointer px-10 py-4 border-2 border-purple-400 text-purple-400 font-bold rounded-full hover:bg-purple-400/10 transition-all backdrop-blur-sm shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+              <span className="flex items-center gap-2">
+                VIEW GALLERY
+                <Images className="w-5 h-5" />
+              </span>
             </MagneticButton>
           </Link>
         </div>
