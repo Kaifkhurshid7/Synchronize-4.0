@@ -28,12 +28,12 @@ const Sponsors = () => {
             {duplicatedSponsors.map((sponsor, index) => (
               <div 
                 key={index} 
-                className="shrink-0 mx-8 glass-card p-6 rounded-xl flex items-center justify-center h-32 w-48 hover:bg-white/10 transition-all duration-300 sponsor-card"
+                className="shrink-0 mx-8 glass-card p-6 rounded-xl flex items-center justify-center h-32 w-48 hover:bg-white/10 transition-all duration-300 sponsor-card group"
               >
                 <img 
                   src={sponsor.logo} 
                   alt={sponsor.name} 
-                  className="max-h-12 w-auto grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                  className="max-h-12 w-auto grayscale group-hover:grayscale-0 transition-all duration-300 opacity-70 group-hover:opacity-100"
                 />
               </div>
             ))}

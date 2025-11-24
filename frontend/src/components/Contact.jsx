@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Mail, MapPin, Twitter, Instagram, Linkedin } from 'lucide-react';
+import api from '../utils/api';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -9,6 +10,13 @@ const Contact = () => {
   const formRef = useRef(null);
   const titleRef = useRef(null);
   const canvasRef = useRef(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   useEffect(() => {
     // Animated background particles
@@ -72,6 +80,34 @@ const Contact = () => {
     );
   }, []);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await api.post('/mail/contact', formData);
+      
+      if (response.data.success) {
+        setSubmitStatus({ type: 'success', message: 'Message sent successfully!' });
+        setFormData({ name: '', email: '', message: '' });
+      }
+    } catch (error) {
+      const errorMessage = error.response?.data?.error || 'Failed to send message. Please try again.';
+      setSubmitStatus({ type: 'error', message: errorMessage });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="min-h-screen flex items-center justify-center py-20 relative overflow-hidden">
       {/* Animated background canvas */}
@@ -96,7 +132,7 @@ const Contact = () => {
               </h2>
               
               {/* Animated underline */}
-              <div className="h-1 bg-linear-to-r from-transparent via-cyan-400 to-transparent animate-shimmer" />
+              <div className="h-1 bg-linear-to-r from-transparent via-cyan-400 to-transparent animate-gradient-flow" />
             </div>
             
             <p className="text-gray-400 text-lg mt-6 max-w-2xl mx-auto">
@@ -164,6 +200,7 @@ const Contact = () => {
             {/* Enhanced Form */}
             <form 
               ref={formRef} 
+              onSubmit={handleSubmit}
               className="relative p-8 rounded-2xl space-y-6 border border-cyan-400/20 bg-black/40 backdrop-blur-xl shadow-2xl"
             >
 
@@ -172,8 +209,13 @@ const Contact = () => {
                 <div className="group/input">
                   <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within/input:text-cyan-400 transition-colors">Name</label>
                   <input 
-                    type="text" 
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400/60 focus:shadow-[0_0_20px_rgba(0,242,255,0.3)] focus:bg-white/10 transition-all duration-300" 
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    disabled={isSubmitting}
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400/60 focus:shadow-[0_0_20px_rgba(0,242,255,0.3)] focus:bg-white/10 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" 
                     placeholder="John Doe" 
                   />
                 </div>
@@ -181,8 +223,13 @@ const Contact = () => {
                 <div className="group/input">
                   <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within/input:text-cyan-400 transition-colors">Email</label>
                   <input 
-                    type="email" 
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400/60 focus:shadow-[0_0_20px_rgba(0,242,255,0.3)] focus:bg-white/10 transition-all duration-300" 
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    disabled={isSubmitting}
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400/60 focus:shadow-[0_0_20px_rgba(0,242,255,0.3)] focus:bg-white/10 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" 
                     placeholder="john@example.com" 
                   />
                 </div>
@@ -190,18 +237,35 @@ const Contact = () => {
                 <div className="group/input">
                   <label className="block text-sm font-medium text-gray-400 mb-2 group-focus-within/input:text-cyan-400 transition-colors">Message</label>
                   <textarea 
-                    rows="4" 
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400/60 focus:shadow-[0_0_20px_rgba(0,242,255,0.3)] focus:bg-white/10 transition-all duration-300 resize-none" 
+                    rows="4"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    disabled={isSubmitting}
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-cyan-400/60 focus:shadow-[0_0_20px_rgba(0,242,255,0.3)] focus:bg-white/10 transition-all duration-300 resize-none disabled:opacity-50 disabled:cursor-not-allowed" 
                     placeholder="Your message..."
                   ></textarea>
                 </div>
+
+                {/* Status message */}
+                {submitStatus && (
+                  <div className={`p-4 rounded-xl text-sm font-medium ${
+                    submitStatus.type === 'success' 
+                      ? 'bg-green-500/20 border border-green-500/50 text-green-400' 
+                      : 'bg-red-500/20 border border-red-500/50 text-red-400'
+                  }`}>
+                    {submitStatus.message}
+                  </div>
+                )}
                 
                 <button 
-                  type="submit" 
-                  className="relative w-full py-4 bg-linear-to-r from-cyan-400 to-cyan-500 text-black font-bold rounded-xl overflow-hidden group/button transition-all duration-300 transform hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,242,255,0.6)]"
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="relative w-full py-4 bg-linear-to-r from-cyan-400 to-cyan-500 text-black font-bold rounded-xl overflow-hidden group/button transition-all duration-300 transform hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,242,255,0.6)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   <span className="relative z-10 flex items-center justify-center space-x-2">
-                    <span>Send Message</span>
+                    <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                     <Mail className="w-5 h-5 transform group-hover/button:translate-x-1 transition-transform" />
                   </span>
                   

@@ -236,4 +236,14 @@
   .animate-pulse-slow {
     animation: pulse-slow 4s ease-in-out infinite;
   }
+
+  @keyframes gradient-flow {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+
+  .animate-gradient-flow {
+    background-size: 200% 100%;
+    animation: gradient-flow 3s linear infinite;
+  }
 }

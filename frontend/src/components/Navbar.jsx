@@ -68,7 +68,7 @@ const Navbar = () => {
   return (
     <>
       {/* Floating Header */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference text-white backdrop-blur-sm bg-black/10 border-b border-white/5 transition-all duration-300">
+      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference text-white backdrop-blur-sm bg-black/10 transition-all duration-300">
         <Link 
           to="/" 
           onClick={() => setIsOpen(false)} 
@@ -79,9 +79,17 @@ const Navbar = () => {
         
         <button 
           onClick={toggleMenu}
-          className="relative z-50 w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition-all duration-300 cursor-pointer group hover:scale-110 hover:rotate-180 active:scale-95"
+          className="relative z-50 w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/10 transition-all duration-300 cursor-pointer group active:scale-95"
         >
-          {isOpen ? <FaTimes size={24} className="group-hover:text-red-500 transition-colors duration-300" /> : <FaBars size={24} className="group-hover:text-cyan-400 transition-colors duration-300" />}
+          {isOpen ? (
+            <FaTimes size={24} className="group-hover:text-red-500 group-hover:rotate-90 transition-all duration-300" />
+          ) : (
+            <div className="flex flex-col justify-center items-end gap-1.5 w-6">
+              <span className="block w-full h-0.5 bg-white group-hover:bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+              <span className="block w-3/4 h-0.5 bg-white group-hover:bg-cyan-400 transition-all duration-300 delay-75 group-hover:w-full"></span>
+              <span className="block w-1/2 h-0.5 bg-white group-hover:bg-cyan-400 transition-all duration-300 delay-150 group-hover:w-full"></span>
+            </div>
+          )}
         </button>
       </nav>
 
