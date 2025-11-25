@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { X } from 'lucide-react';
 
 const EventDetailsCard = ({ event, onClose }) => {
   const scrollContainerRef = useRef(null);
@@ -20,6 +21,9 @@ const EventDetailsCard = ({ event, onClose }) => {
       document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
     document.body.style.overflow = 'hidden';
+    
+    // Hide navbar when modal is open
+    document.body.classList.add('modal-open');
 
     // Close on Escape
     const onKeyDown = (e) => {
@@ -33,6 +37,9 @@ const EventDetailsCard = ({ event, onClose }) => {
       // Restore body styles
       document.body.style.overflow = originalOverflow;
       document.body.style.paddingRight = originalPaddingRight;
+      
+      // Show navbar again
+      document.body.classList.remove('modal-open');
 
       // Re-enable Lenis
       if (lenis?.start) {
@@ -58,24 +65,23 @@ const EventDetailsCard = ({ event, onClose }) => {
 
   return (
     <div
-      className="modal-overlay fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4"
+      className="modal-overlay fixed inset-0 bg-black/80 backdrop-blur-sm z-100 flex items-center justify-center p-3 sm:p-4"
       onClick={handleClose}
       aria-modal="true"
       role="dialog"
+      style={{ isolation: 'isolate' }}
     >
       <div
-        className="modal-content relative w-full max-w-4xl h-[85vh] sm:h-[90vh] bg-linear-to-br from-gray-900 via-black to-gray-900 rounded-xl sm:rounded-2xl border border-cyan-400/30 shadow-2xl shadow-cyan-400/20 flex flex-col"
+        className="modal-content relative z-110 w-full max-w-4xl h-[85vh] sm:h-[90vh] bg-linear-to-br from-gray-900 via-black to-gray-900 rounded-xl sm:rounded-2xl border border-cyan-400/30 shadow-2xl shadow-cyan-400/20 flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={handleClose}
-          className="cursor-pointer absolute top-2 right-2 sm:top-4 sm:right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-red-500/20 border border-white/20 hover:border-red-500 transition-all duration-300 group"
+          className="cursor-pointer absolute z-120 top-3 right-3 sm:top-4 sm:right-4 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-black/50 hover:bg-red-600/20 border border-white/50 hover:border-red-500 transition-all duration-300 group backdrop-blur-sm"
           aria-label="Close event details"
         >
-          <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-red-500 group-hover:rotate-90 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <X className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-red-500 group-hover:rotate-90 transition-all duration-300" />
         </button>
 
         {/* Event Image */}
@@ -237,6 +243,7 @@ const EventDetailsCard = ({ event, onClose }) => {
         </div>
       </div>
     </div>
+
   );
 };
 

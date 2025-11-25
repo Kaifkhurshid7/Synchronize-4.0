@@ -72,11 +72,13 @@ const GalleryPage = () => {
   const openLightbox = (image) => {
     setSelectedImage(image);
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
   };
 
   const closeLightbox = () => {
     setSelectedImage(null);
     document.body.style.overflow = 'auto';
+    document.body.classList.remove('modal-open');
   };
 
   return (
@@ -148,6 +150,7 @@ const GalleryPage = () => {
           <div 
             className="fixed inset-0 z-100 bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6"
             onClick={closeLightbox}
+            style={{ isolation: 'isolate' }}
           >
 
 
@@ -160,11 +163,10 @@ const GalleryPage = () => {
                 />
                 <button
                   onClick={closeLightbox}
-                  className="cursor-pointer absolute top-2 right-2 sm:top-4 sm:right-4 z-101 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-red-500/20 border border-white hover:border-red-500 transition-all duration-300 group"
+                  className="cursor-pointer absolute top-2 right-2 sm:top-4 sm:right-4 z-101 w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-black/50 hover:bg-red-600/20 border border-white/50 hover:border-red-500 transition-all duration-300 group backdrop-blur-sm"
+                  aria-label="Close gallery"
                 >
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-red-500 group-hover:rotate-90 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
+                  <X className="w-5 h-5 sm:w-6 sm:h-6 text-white group-hover:text-red-500 group-hover:rotate-90 transition-all duration-300" />
                 </button>
               </div>
               <div className="mt-4 sm:mt-6 text-center px-4">

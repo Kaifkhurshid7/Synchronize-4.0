@@ -96,7 +96,7 @@ const Navbar = () => {
   return (
     <>
       {/* Floating Header */}
-      <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference text-white">
+      <nav className="navbar-main fixed top-0 left-0 w-full z-50 px-6 py-6 flex justify-between items-center mix-blend-difference text-white">
         <Link 
           to="/" 
           onClick={() => setIsOpen(false)} 
@@ -118,7 +118,7 @@ const Navbar = () => {
       {/* Full Screen Menu Overlay */}
       <div 
         ref={bgRef} 
-        className="fixed inset-0 bg-black z-40 transform -translate-y-full flex flex-col justify-center items-center overflow-hidden"
+        className="fixed inset-0 bg-black z-35 transform -translate-y-full flex flex-col justify-center items-center overflow-hidden"
       >
         {/* Background Noise/Gradient */}
         <div className="absolute inset-0 opacity-10 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none"></div>
