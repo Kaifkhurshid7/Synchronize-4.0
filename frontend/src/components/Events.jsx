@@ -145,16 +145,6 @@ const Events = () => {
               Featured <span className="text-cyan-400">Events</span>
             </h2>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-              <select
-                value={selectedDay}
-                onChange={(e) => setSelectedDay(e.target.value)}
-                className="cursor-pointer px-4 py-2 sm:px-6 sm:py-3 bg-cyan-400/10 hover:bg-cyan-400/20 border border-cyan-400 text-cyan-400 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 backdrop-blur-sm"
-              >
-                <option value="all" className="bg-black text-cyan-400">All Days</option>
-                <option value="1" className="bg-black text-cyan-400">Day 1</option>
-                <option value="2" className="bg-black text-cyan-400">Day 2</option>
-                <option value="3" className="bg-black text-cyan-400">Day 3</option>
-              </select>
               <button 
                 onClick={() => window.location.href = '/events'}
                 className="cursor-pointer px-4 py-2 sm:px-6 sm:py-3 bg-cyan-400/10 hover:bg-cyan-400/20 border border-cyan-400 text-cyan-400 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:scale-105"

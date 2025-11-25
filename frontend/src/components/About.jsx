@@ -8,37 +8,41 @@ const AnimatedNumber = ({ finalValue, label, delay = 0 }) => {
   const [displayValue, setDisplayValue] = useState('0');
   const numberRef = useRef(null);
   const hasAnimated = useRef(false);
+  const animationRef = useRef(null);
 
   useEffect(() => {
     const element = numberRef.current;
     
     const animateNumber = () => {
-      // Extract numeric value and suffix
+      // Extract numeric value and suffix/prefix
       const numericValue = parseInt(finalValue.replace(/[^0-9]/g, ''));
-      const suffix = finalValue.replace(/[0-9]/g, '');
+      const prefix = finalValue.match(/^[^0-9]+/) ? finalValue.match(/^[^0-9]+/)[0] : '';
+      const suffix = finalValue.match(/[^0-9]+$/) ? finalValue.match(/[^0-9]+$/)[0] : '';
       
-      let iteration = 0;
-      const totalIterations = 30;
-      const slowDownPoint = 20;
+      // Create an object to animate
+      const counter = { value: 0 };
       
-      const interval = setInterval(() => {
-        if (iteration < slowDownPoint) {
-          // Fast random numbers
-          const randomNum = Math.floor(Math.random() * numericValue * 2);
-          setDisplayValue(randomNum + suffix);
-          iteration++;
-        } else if (iteration < totalIterations) {
-          // Slow down and converge to final value
-          const progress = (iteration - slowDownPoint) / (totalIterations - slowDownPoint);
-          const currentNum = Math.floor(numericValue * progress + Math.random() * (numericValue * (1 - progress)));
-          setDisplayValue(currentNum + suffix);
-          iteration++;
-        } else {
-          // Final value
+      // Kill any existing animation
+      if (animationRef.current) {
+        animationRef.current.kill();
+      }
+      
+      // Animate using GSAP for smooth easing
+      animationRef.current = gsap.to(counter, {
+        value: numericValue,
+        duration: 2.5,
+        delay: delay,
+        ease: "power2.out",
+        onUpdate: function() {
+          // Format the number with smooth interpolation
+          const currentValue = Math.floor(counter.value);
+          setDisplayValue(prefix + currentValue + suffix);
+        },
+        onComplete: function() {
+          // Ensure final value is exact
           setDisplayValue(finalValue);
-          clearInterval(interval);
         }
-      }, iteration < slowDownPoint ? 50 : 100);
+      });
     };
     
     const scrollTrigger = ScrollTrigger.create({
@@ -47,15 +51,18 @@ const AnimatedNumber = ({ finalValue, label, delay = 0 }) => {
       onEnter: () => {
         if (!hasAnimated.current) {
           hasAnimated.current = true;
-          animateNumber();
+          setTimeout(() => animateNumber(), delay * 1000);
         }
       }
     });
 
     return () => {
       scrollTrigger.kill();
+      if (animationRef.current) {
+        animationRef.current.kill();
+      }
     };
-  }, [finalValue]);
+  }, [finalValue, delay]);
 
   return (
     <div ref={numberRef} className="relative group">
