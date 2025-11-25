@@ -247,3 +247,41 @@
     animation: gradient-flow 3s linear infinite;
   }
 }
+/* Make sure this file is loaded globally (e.g. import in root layout) */
+
+/* Smooth touch scrolling for iOS */
+.scrollbar-custom {
+  -webkit-overflow-scrolling: touch; /* smooth momentum scrolling on iOS */
+  touch-action: auto;                /* allow touch scroll inside element */
+}
+
+/* Optional: visual custom scrollbar for modern browsers */
+.scrollbar-custom {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.6) rgba(15, 23, 42, 0.2);
+}
+
+/* WebKit scrollbar styles */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+/* Prevent parent/body scroll on overscroll for inner container */
+.overscroll-contain {
+  overscroll-behavior: contain;
+}
+
+/* If you want a tiny drop shadow on the modal overlay */
+.modal-overlay {
+  -webkit-tap-highlight-color: transparent;
+}

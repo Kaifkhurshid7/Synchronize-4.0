@@ -1,145 +1,78 @@
 import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
 
 const EventDetailsCard = ({ event, onClose }) => {
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
     const lenis = window.lenis;
-    
-    // Save current scroll position
-    const scrollY = window.scrollY || window.pageYOffset;
-    
-    // Stop Lenis smooth scrolling
-    if (lenis) {
+
+    // Stop Lenis smooth scrolling (if present)
+    if (lenis?.stop) {
       lenis.stop();
     }
 
     // Lock body scroll when modal is open
     const originalOverflow = document.body.style.overflow;
-    const originalPosition = document.body.style.position;
-    const originalTop = document.body.style.top;
-    const originalWidth = document.body.style.width;
-    
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.width = '100%';
-
-    gsap.fromTo('.modal-overlay', 
-      { opacity: 0 },
-      { opacity: 1, duration: 0.3 }
-    );
-    gsap.fromTo('.modal-content',
-      { scale: 0.8, opacity: 0, y: 50 },
-      { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: 'back.out(1.7)' }
-    );
-
-    // Prevent scroll propagation to the page
-    const scrollContainer = scrollContainerRef.current;
-    if (!scrollContainer) {
-      // Restore everything if scrollContainer is not available
-      document.body.style.overflow = originalOverflow;
-      document.body.style.position = originalPosition;
-      document.body.style.top = originalTop;
-      document.body.style.width = originalWidth;
-      if (lenis) lenis.start();
-      return;
+    const originalPaddingRight = document.body.style.paddingRight || '';
+    // prevent layout shift when scrollbar disappears
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = `${scrollbarWidth}px`;
     }
+    document.body.style.overflow = 'hidden';
 
-    const handleWheel = (e) => {
-      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
-      const isAtTop = scrollTop === 0;
-      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-
-      // Prevent page scroll when scrolling within modal bounds
-      if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
-        // At boundary: prevent default to stop page scroll
-        e.preventDefault();
-      } else if (scrollHeight > clientHeight) {
-        // Content is scrollable: stop propagation to prevent page scroll
-        e.stopPropagation();
+    // Close on Escape
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
       }
     };
-
-    // Handle touch events for mobile devices
-    let touchStartY = 0;
-    
-    const handleTouchStart = (e) => {
-      touchStartY = e.touches[0].clientY;
-    };
-    
-    const handleTouchMove = (e) => {
-      const touchY = e.touches[0].clientY;
-      const touchDelta = touchStartY - touchY;
-      const { scrollTop, scrollHeight, clientHeight } = scrollContainer;
-      const isAtTop = scrollTop === 0;
-      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
-      
-      // Prevent rubber-band scrolling at boundaries
-      if ((touchDelta < 0 && isAtTop) || (touchDelta > 0 && isAtBottom)) {
-        e.preventDefault();
-      }
-    };
-
-    scrollContainer.addEventListener('wheel', handleWheel, { passive: false });
-    scrollContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
-    scrollContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+    window.addEventListener('keydown', onKeyDown);
 
     return () => {
-      scrollContainer.removeEventListener('wheel', handleWheel);
-      scrollContainer.removeEventListener('touchstart', handleTouchStart);
-      scrollContainer.removeEventListener('touchmove', handleTouchMove);
-      
       // Restore body styles
       document.body.style.overflow = originalOverflow;
-      document.body.style.position = originalPosition;
-      document.body.style.top = originalTop;
-      document.body.style.width = originalWidth;
-      
-      // Restore scroll position
-      window.scrollTo(0, scrollY);
-      
+      document.body.style.paddingRight = originalPaddingRight;
+
       // Re-enable Lenis
-      if (lenis) {
+      if (lenis?.start) {
         lenis.start();
       }
+
+      window.removeEventListener('keydown', onKeyDown);
     };
-  }, []);
+  }, [onClose]);
 
   const handleClose = (e) => {
     if (e) {
       e.preventDefault();
       e.stopPropagation();
     }
-    
-    gsap.to('.modal-content', {
-      scale: 0.8,
-      opacity: 0,
-      y: 50,
-      duration: 0.3,
-      ease: 'power2.in',
-      onComplete: onClose
-    });
-    gsap.to('.modal-overlay', {
-      opacity: 0,
-      duration: 0.3
-    });
+    onClose();
+  };
+
+  // prevent wheel/touch from bubbling to overlay/global scrollers
+  const stopProp = (e) => {
+    e.stopPropagation();
   };
 
   return (
-    <div 
+    <div
       className="modal-overlay fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4"
       onClick={handleClose}
+      aria-modal="true"
+      role="dialog"
     >
-      <div 
-        className="modal-content relative w-full max-w-4xl max-h-[95vh] sm:max-h-[90vh] bg-linear-to-br from-gray-900 via-black to-gray-900 rounded-xl sm:rounded-2xl border border-cyan-400/30 shadow-2xl shadow-cyan-400/20 overflow-hidden flex flex-col"
+      <div
+        // NOTE: h-[95vh] ensures the inner flex child can overflow and be scrollable
+        className="modal-content relative w-full max-w-4xl h-[95vh] sm:h-[90vh] bg-linear-to-br from-gray-900 via-black to-gray-900 rounded-xl sm:rounded-2xl border border-cyan-400/30 shadow-2xl shadow-cyan-400/20 flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={handleClose}
           className="cursor-pointer absolute top-2 right-2 sm:top-4 sm:right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-red-500/20 border border-white/20 hover:border-red-500 transition-all duration-300 group"
+          aria-label="Close event details"
         >
           <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white group-hover:text-red-500 group-hover:rotate-90 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -165,7 +98,14 @@ const EventDetailsCard = ({ event, onClose }) => {
         </div>
 
         {/* Event Details - Scrollable */}
-        <div ref={scrollContainerRef} className="p-4 sm:p-6 md:p-8 overflow-y-auto scrollbar-custom flex-1 min-h-0">
+        <div
+          ref={scrollContainerRef}
+          onWheel={stopProp}
+          onTouchStart={stopProp}
+          onTouchMove={stopProp}
+          className="p-4 sm:p-6 md:p-8 overflow-y-auto scrollbar-custom flex-1 min-h-0 overscroll-contain"
+          style={{ WebkitOverflowScrolling: 'touch', touchAction: 'auto' }}
+        >
           <p className="text-gray-300 text-sm sm:text-base md:text-lg mb-4 sm:mb-6 leading-relaxed">
             {event.description}
           </p>
@@ -215,7 +155,7 @@ const EventDetailsCard = ({ event, onClose }) => {
             <div className="flex flex-col md:flex-row md:items-center gap-4">
               <div className="flex-1">
                 <p className="text-white font-semibold text-base sm:text-lg">{event.poc.name}</p>
-                <a 
+                <a
                   href={`mailto:${event.poc.email}`}
                   className="text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-2 mt-1 text-sm sm:text-base break-all"
                 >
@@ -229,13 +169,18 @@ const EventDetailsCard = ({ event, onClose }) => {
           </div>
 
           {/* Register Button */}
-          <button className="cursor-pointer group relative w-full bg-linear-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-cyan-400/60 mb-4 sm:mb-6 overflow-hidden text-sm sm:text-base">
+          <a
+            href={event.registrationLink || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer group relative w-full bg-linear-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-500 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-cyan-400/60 mb-4 sm:mb-6 overflow-hidden text-sm sm:text-base block text-center"
+          >
             {/* Shimmer effect */}
             <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-white/30 to-transparent"></div>
-            
+
             {/* Glow effect */}
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-linear-to-r from-cyan-400/20 to-blue-500/20 blur-xl"></div>
-            
+
             <span className="relative flex items-center justify-center gap-1.5 sm:gap-2 group-hover:gap-3 transition-all duration-300">
               <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -245,7 +190,7 @@ const EventDetailsCard = ({ event, onClose }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </span>
-          </button>
+          </a>
 
           {/* Registration Queries Section */}
           <div className="bg-linear-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-400/30 rounded-lg p-4 sm:p-6">
@@ -258,7 +203,7 @@ const EventDetailsCard = ({ event, onClose }) => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div className="bg-black/30 rounded-lg p-3 sm:p-4 border border-white/10">
                 <p className="text-white font-semibold mb-1 text-sm sm:text-base">[Contact Name 1]</p>
-                <a 
+                <a
                   href="tel:+919876543210"
                   className="text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm"
                 >
@@ -270,7 +215,7 @@ const EventDetailsCard = ({ event, onClose }) => {
               </div>
               <div className="bg-black/30 rounded-lg p-3 sm:p-4 border border-white/10">
                 <p className="text-white font-semibold mb-1 text-sm sm:text-base">[Contact Name 2]</p>
-                <a 
+                <a
                   href="tel:+919876543211"
                   className="text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm"
                 >
