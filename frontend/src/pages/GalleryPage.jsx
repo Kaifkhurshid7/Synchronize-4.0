@@ -269,8 +269,8 @@ const GalleryPage = () => {
                     <div className="tape tape-bottom" />
                     
                     <div 
-                      className="polaroid-image-wrapper cursor-pointer"
-                      onClick={() => openLightbox(image)}
+                      className={`polaroid-image-wrapper ${!isMobile ? 'cursor-pointer' : ''}`}
+                      onClick={() => !isMobile && openLightbox(image)}
                     >
                       <img 
                         src={image.url} 
