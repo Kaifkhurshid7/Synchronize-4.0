@@ -6,6 +6,7 @@ const MagneticButton = ({ children, className = "", onClick }) => {
   const textRef = useRef(null);
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
     const button = buttonRef.current;
     const text = textRef.current;
 
@@ -38,12 +39,25 @@ const MagneticButton = ({ children, className = "", onClick }) => {
       });
     };
 
-    button.addEventListener("mousemove", handleMouseMove);
-    button.addEventListener("mouseleave", handleMouseLeave);
+    const initMagneticEffect = () => {
+      if (mediaQuery.matches) {
+        button.addEventListener("mousemove", handleMouseMove);
+        button.addEventListener("mouseleave", handleMouseLeave);
+      } else {
+        button.removeEventListener("mousemove", handleMouseMove);
+        button.removeEventListener("mouseleave", handleMouseLeave);
+        // Reset position if disabled while active
+        handleMouseLeave();
+      }
+    };
+
+    initMagneticEffect();
+    mediaQuery.addEventListener("change", initMagneticEffect);
 
     return () => {
       button.removeEventListener("mousemove", handleMouseMove);
       button.removeEventListener("mouseleave", handleMouseLeave);
+      mediaQuery.removeEventListener("change", initMagneticEffect);
     };
   }, []);
 

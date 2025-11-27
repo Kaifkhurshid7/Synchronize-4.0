@@ -161,7 +161,7 @@ const Navbar = () => {
                 onMouseLeave={handleLinkLeave}
                 className={`group text-5xl sm:text-6xl md:text-7xl lg:text-7xl font-display font-black text-transparent bg-clip-text bg-linear-to-r from-white to-white/60 cursor-pointer uppercase tracking-tighter italic px-2.5 ${
                   isLargeScreen 
-                    ? 'hover:to-cyan-400 transition-all duration-300' 
+                    ? 'hover:to-cyan-400 transition-all duration-150' 
                     : 'active:to-cyan-400 transition-colors duration-150'
                 }`}
               >
@@ -173,7 +173,7 @@ const Navbar = () => {
         
         <div className="absolute bottom-10 left-0 w-full flex justify-between px-10 text-white/40 font-mono text-sm uppercase tracking-widest">
             <span>Est. 2025</span>
-            <span>Synchronize TechFest</span>
+            <span>TechFest, Synchronize 4.0</span>
         </div>
       </div>
     </>
