@@ -63,41 +63,37 @@ const About = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 70%", // Start animating when section is largely visible
+          end: "bottom bottom",
+          toggleActions: "play none none reverse"
+        }
+      });
 
-
-      // Title entrance animation
-      gsap.fromTo(titleRef.current,
-        { y: 80, opacity: 0 },
+      // Title entrance
+      tl.fromTo(titleRef.current,
+        { y: 50, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 80%",
-            end: "top 50%",
-            scrub: 1
-          }
+          duration: 0.8,
+          ease: "power3.out"
         }
+      )
+      // Cards stagger
+      .fromTo(".about-card", 
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: "power3.out"
+        },
+        "-=0.4"
       );
-
-      // Cards stagger animation
-      ScrollTrigger.batch(".about-card", {
-        start: "top 85%",
-        once: true, // Animate only once creates a stable experience
-        onEnter: batch => gsap.fromTo(batch, 
-          { y: 60, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            stagger: 0.1,
-            duration: 0.8,
-            ease: "power3.out",
-            overwrite: true
-          }
-        )
-      });
 
     }, containerRef);
 
@@ -105,7 +101,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" ref={containerRef} className="relative min-h-screen overflow-hidden bg-black flex items-center justify-center py-20 lg:py-0">
+    <section id="about" ref={containerRef} className="relative min-h-screen overflow-hidden bg-black flex items-center justify-center py-20 lg:py-0 z-10">
       
 
 
