@@ -356,7 +356,7 @@ const EventCard = ({ event, onClick }) => {
       onClick={onClick}
     >
       {/* NEW: Generated Comic Sticker Overlay (Top Left) */}
-      <div className="absolute -top-7 -left-8 z-50 w-16 h-16 filter drop-shadow-[5px_5px_0px_rgba(0,0,0,0.5)] transform -rotate-12 hover:scale-110 hover:-rotate-6 transition-all duration-300 pointer-events-none">
+      <div className="absolute -top-7 -left-8 z-40 w-16 h-16 filter drop-shadow-[5px_5px_0px_rgba(0,0,0,0.5)] transform -rotate-12 hover:scale-110 hover:-rotate-6 transition-all duration-300 pointer-events-none">
          <ComicSticker />
       </div>
 
@@ -602,7 +602,7 @@ const EventsPage = () => {
             </div>
 
             {/* Controls Bar */}
-            <div className="flex flex-col md:flex-row justify-between items-center mb-10 bg-black/40 border-y-4 border-black p-4 backdrop-blur-md">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-10 bg-black/40 border-y-4 border-black p-4 backdrop-blur-md relative z-1050">
                 <div className="flex items-center gap-2 mb-4 md:mb-0">
                     <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
                     <span className="text-white font-mono font-bold uppercase tracking-widest text-sm">
@@ -618,7 +618,7 @@ const EventsPage = () => {
                     
                     <div className="h-8 w-0.5 bg-gray-600 mx-2"></div>
                     
-                    <div className="relative" ref={dropdownRef}>
+                    <div className="relative z-1100" ref={dropdownRef}>
                         <button
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                         className="flex items-center gap-2 px-4 py-2 bg-yellow-400 border-2 border-black font-black uppercase text-black hover:bg-white transition-colors shadow-[4px_4px_0px_#000] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#000] active:translate-y-0 active:shadow-[2px_2px_0px_#000]"
@@ -629,7 +629,7 @@ const EventsPage = () => {
                         </button>
 
                         {isDropdownOpen && (
-                        <div className="absolute right-0 top-full mt-2 w-48 bg-white border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] z-50">
+                        <div className="absolute right-0 top-full mt-2 w-48 bg-white border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] z-1100">
                             {[
                             { value: 'all', label: 'All Days' },
                             { value: '1', label: 'Day 1' },

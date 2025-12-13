@@ -127,7 +127,7 @@ const Footer = () => {
               {[
                 { name: 'Home', path: '/', icon: '🏠' },
                 { name: 'About Us', path: '/#about', icon: '🛡️'},
-                { name: 'Events', path: '/#events', icon: '⚡' },
+                { name: 'Events', path: '/events', icon: '⚡' },
                 { name: 'Schedule', path: '/#schedule', icon: '📅' },
                 { name: 'Sponsors', path: '/#sponsors', icon: '💎' },
                 { name: 'Team', path: '/team', icon: '👥' },
@@ -278,7 +278,7 @@ const Footer = () => {
                   <Shield className="w-3 h-3 text-black fill-current" />
                 </div>
                 <p className="font-black text-sm md:text-base pop-art-text">
-                  © {new Date().getFullYear()} SYNCHRONIZE FEST - ALL RIGHTS RESERVED
+                  © {new Date().getFullYear()} SYNCHRONIZE TECHFEST - ALL RIGHTS RESERVED
                 </p>
               </div>
               
