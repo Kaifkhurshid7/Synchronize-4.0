@@ -1,11 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MagneticButton from './MagneticButton';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
+  const [theme, setTheme] = useState('captain'); // 'captain' or 'panther'
   const navigate = useNavigate();
   const menuRef = useRef(null);
   const linksRef = useRef([]);
@@ -20,6 +24,45 @@ const Navbar = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Scroll Trigger for Theme Change
+  useEffect(() => {
+    const aboutSection = document.getElementById('about');
+    
+    if (aboutSection) {
+      ScrollTrigger.create({
+        trigger: aboutSection,
+        start: "top 20%", // Changes when About section is near top
+        end: "bottom 20%",
+        onEnter: () => setTheme('panther'),
+        onLeaveBack: () => setTheme('captain'),
+        onEnterBack: () => setTheme('panther'),
+        onLeave: () => setTheme('captain'),
+      });
+    }
+
+    // Fallback/Cleanup if element missing or unmounting
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
+  }, []); // Empty dependency array, but might need to re-run if route changes? 
+  // Ideally we re-run this when the page component mounts/unmounts, but Navbar is persistent.
+  // For now, let's assume About section is static on Home. If we navigate away, it might break if we don't check.
+  
+  // Re-check theme on location change (if about section doesn't exist, default to captain)
+  useEffect(() => {
+    const checkAbout = () => {
+        const aboutSection = document.getElementById('about');
+        if (!aboutSection) {
+            setTheme('captain');
+        } else {
+             ScrollTrigger.refresh(); // Refresh triggers
+        }
+    };
+    // Small delay to ensure DOM is ready
+    setTimeout(checkAbout, 100);
+  }, [window.location.pathname]);
+
 
   useEffect(() => {
     const tl = gsap.timeline({ paused: true });
@@ -83,16 +126,22 @@ const Navbar = () => {
     { name: "Gallery", path: "/gallery", color: "var(--color-arc-reactor)" },
   ];
 
+  // Theme Styles
+  const isPanther = theme === 'panther';
+  const navBgClass = isPanther ? 'bg-purple-900/90 border-black' : 'bg-red-900/90 border-black';
+  const buttonBgClass = isPanther ? 'bg-purple-700 border-purple-400' : 'bg-[--color-marvel-red] border-black';
+  const logoBgClass = isPanther ? 'bg-purple-700 border-purple-400' : 'bg-[--color-marvel-red] border-white';
+
   return (
     <>
-      <nav className="navbar-main fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-red-900/90 text-white backdrop-blur-md border-b-4 border-black box-border">
+      <nav className={`navbar-main fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center text-white backdrop-blur-md border-b-4 box-border transition-all duration-500 ${navBgClass}`}>
         <Link 
           to="/" 
           onClick={() => setIsOpen(false)} 
           className="relative z-50 group cursor-pointer"
         >
           <div className="flex items-center gap-2 transform -skew-x-12">
-             <div className="w-12 h-12 bg-[--color-marvel-red] border-4 border-white flex items-center justify-center comic-shadow group-hover:translate-y-[-2px] transition-transform">
+             <div className={`w-12 h-12 border-4 flex items-center justify-center comic-shadow group-hover:translate-y-[-2px] transition-all duration-500 ${logoBgClass}`}>
                 <span className="font-display font-black text-3xl text-white italic skew-x-12">S</span>
              </div>
              <div className="flex flex-col skew-x-12">
@@ -103,7 +152,7 @@ const Navbar = () => {
         </Link>
         
         <div className="relative z-50">
-          <MagneticButton onClick={toggleMenu} className="w-16 h-16 cursor-pointer flex items-center justify-center group bg-[--color-marvel-red] border-4 border-black comic-shadow hover:-translate-y-1 transition-transform">
+          <MagneticButton onClick={toggleMenu} className={`w-12 h-12 cursor-pointer flex items-center justify-center group border-4 comic-shadow hover:-translate-y-1 transition-all duration-500 ${buttonBgClass}`}>
              <div className="relative w-8 h-8 flex flex-col justify-center items-center gap-1.5">
                  <span className={`block w-full h-[4px] bg-white border border-black transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2.5' : ''}`}></span>
                  <span className={`block w-full h-[4px] bg-white border border-black transition-all duration-300 ${isOpen ? 'opacity-0' : ''}`}></span>

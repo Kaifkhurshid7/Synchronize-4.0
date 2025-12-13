@@ -159,7 +159,7 @@ const ComicEffect = ({ word, x, y, rotation }) => {
 const Layout = ({ children }) => {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.8, // Reduced from 1.2 for snappier scroll
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',

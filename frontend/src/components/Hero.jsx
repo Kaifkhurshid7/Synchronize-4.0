@@ -159,14 +159,7 @@ const Hero = () => {
           <source src={HeroVideo} type="video/mp4" />
         </video>
         
-        {/* Comic Halftone Pattern Overlay */}
-        <div 
-            className="absolute inset-0 opacity-20 z-20 pointer-events-none mix-blend-overlay"
-            style={{
-                backgroundImage: 'radial-gradient(circle, #fff 2px, transparent 2.5px)',
-                backgroundSize: '20px 20px'
-            }}
-        />
+
         
         {/* Speed Lines from center (Impact effect) */}
         {/* <div className="absolute inset-0 bg-[repeating-conic-gradient(from_0deg_at_50%_50%,transparent_0deg,transparent_10deg,rgba(255,255,255,0.05)_10deg,rgba(255,255,255,0.05)_20deg)] animate-[spin_60s_linear_infinite] pointer-events-none z-10"></div> */}

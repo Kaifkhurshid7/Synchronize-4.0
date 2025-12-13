@@ -57,36 +57,13 @@ const Card = ({ children, className = "" }) => {
 
 const About = () => {
   const containerRef = useRef(null);
-  const bgRef = useRef(null);
   const titleRef = useRef(null);
-  const particlesRef = useRef([]);
+  const dotsRef = useRef([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Mouse Parallax for Background
-      const handleMouseMove = (e) => {
-        if (bgRef.current) {
-          const x = (e.clientX / window.innerWidth - 0.5) * 30;
-          const y = (e.clientY / window.innerHeight - 0.5) * 30;
-          
-          gsap.to(bgRef.current, {
-            x: x,
-            y: y,
-            duration: 1,
-            ease: "power2.out"
-          });
-          
-          // Move particles slightly more for depth
-          gsap.to(particlesRef.current, {
-            x: x * 1.5,
-            y: y * 1.5,
-            duration: 1.2,
-            ease: "power2.out"
-          });
-        }
-      };
       
-      window.addEventListener('mousemove', handleMouseMove);
+
 
       // Title entrance animation
       gsap.fromTo(titleRef.current,
@@ -106,39 +83,21 @@ const About = () => {
       );
 
       // Cards stagger animation
-      gsap.from(".about-card", {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".cards-grid",
-          start: "top 85%",
-          end: "top 60%",
-          scrub: 1
-        }
+      ScrollTrigger.batch(".about-card", {
+        start: "top 85%",
+        once: true, // Animate only once creates a stable experience
+        onEnter: batch => gsap.fromTo(batch, 
+          { y: 60, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: "power3.out",
+            overwrite: true
+          }
+        )
       });
-
-      // Animate particles randomly (floating effect) + parallax mixed
-      particlesRef.current.forEach((particle, i) => {
-        if (particle) {
-          gsap.to(particle, {
-            y: `+=${Math.random() * 60 - 30}`,
-            x: `+=${Math.random() * 60 - 30}`,
-            opacity: Math.random() * 0.4 + 0.2,
-            duration: Math.random() * 2.5 + 1.5,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-            delay: Math.random() * 1.5
-          });
-        }
-      });
-      
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-      };
 
     }, containerRef);
 
@@ -146,51 +105,9 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" ref={containerRef} className="relative h-screen overflow-hidden bg-black flex items-center justify-center">
+    <section id="about" ref={containerRef} className="relative min-h-screen overflow-hidden bg-black flex items-center justify-center py-20 lg:py-0">
       
-      {/* Comic Background with Parallax */}
-      <div ref={bgRef} className="absolute inset-0">
-        {/* Vibranium energy particles */}
-        <div className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
-            <div
-              key={i}
-              ref={el => particlesRef.current[i] = el}
-              className="absolute rounded-full"
-              style={{
-                width: `${Math.random() * 4 + 2}px`,
-                height: `${Math.random() * 4 + 2}px`,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                background: i % 2 === 0 ? '#7C3AED' : '#B8860B',
-                opacity: 0.25,
-                filter: 'blur(1px)',
-                boxShadow: `0 0 8px currentColor`
-              }}
-            />
-          ))}
-        </div>
 
-        {/* Comic halftone dots */}
-        <div 
-          className="absolute inset-0 opacity-10 pointer-events-none"
-          style={{
-            backgroundImage: 'radial-gradient(circle, #7C3AED 1.5px, transparent 2px)',
-            backgroundSize: '25px 25px'
-          }}
-        />
-
-        {/* Diagonal speed lines */}
-        <div 
-          className="absolute inset-0 opacity-5 pointer-events-none"
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(45deg, transparent, transparent 80px, #7C3AED 80px, #7C3AED 82px),
-              repeating-linear-gradient(-45deg, transparent, transparent 80px, #B8860B 80px, #B8860B 82px)
-            `
-          }}
-        />
-      </div>
 
       {/* Content - Compact */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 py-6">
@@ -301,17 +218,7 @@ const About = () => {
         </div>
       </div>
 
-      {/* Comic Corner Accents */}
-      <div className="absolute top-0 left-0 w-20 h-20 border-t-6 border-l-6 border-purple-600 z-30" />
-      <div className="absolute top-0 right-0 w-20 h-20 border-t-6 border-r-6 border-purple-600 z-30" />
-      <div className="absolute bottom-0 left-0 w-20 h-20 border-b-6 border-l-6 border-yellow-700 z-30" />
-      <div className="absolute bottom-0 right-0 w-20 h-20 border-b-6 border-r-6 border-yellow-700 z-30" />
 
-      {/* Speed Lines Decoration */}
-      <div className="absolute top-1/4 left-0 w-2 h-24 bg-gradient-to-b from-transparent via-purple-600 to-transparent opacity-40 -skew-y-12" />
-      <div className="absolute top-3/4 left-0 w-2 h-24 bg-gradient-to-b from-transparent via-yellow-700 to-transparent opacity-40 -skew-y-12" />
-      <div className="absolute top-1/4 right-0 w-2 h-24 bg-gradient-to-b from-transparent via-purple-600 to-transparent opacity-40 skew-y-12" />
-      <div className="absolute top-3/4 right-0 w-2 h-24 bg-gradient-to-b from-transparent via-yellow-700 to-transparent opacity-40 skew-y-12" />
 
 
     </section>
