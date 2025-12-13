@@ -58,7 +58,7 @@ const Sponsors = () => {
         <div className="text-center mb-16 relative">
           <div className="inline-block relative">
             <h2 className="text-5xl md:text-7xl font-display font-black text-white italic tracking-tighter transform -skew-x-6 text-shadow-comic">
-              OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-red-600">ALLIES</span>
+              OUR <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-red-600">ALLIES</span>
             </h2>
             {/* Speech Bubble Decoration */}
             <div className="absolute -top-12 -right-12 hidden md:block">

@@ -386,14 +386,14 @@ const EventCard = ({ event, onClick }) => {
           />
           
           {/* Cover Overlay Gradients */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
+          <div className="absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent opacity-80"></div>
           
           {/* Halftone / Comic Texture */}
           <div className="absolute inset-0 bg-[radial-gradient(circle,transparent_20%,#000_120%)] opacity-50 mix-blend-multiply"></div>
           <div className="absolute inset-0 halftone-pattern opacity-10 pointer-events-none"></div>
 
           {/* Action Burst Badge (Top Right Image) */}
-          <div className="absolute top-4 right-4 z-20 transform rotate-12 group-hover:rotate-[20deg] transition-transform duration-300">
+          <div className="absolute top-4 right-4 z-20 transform rotate-12 group-hover:rotate-20 transition-transform duration-300">
              <HeroBadge />
           </div>
 
@@ -537,13 +537,13 @@ const EventsPage = () => {
              {/* Tint Overlay based on Category */}
              <div className={`
                  absolute inset-0 mix-blend-color opacity-60 transition-all duration-700
-                 ${categories.find(c => c.id === selectedCategory)?.theme.bg || 'bg-gradient-to-br from-blue-700 via-red-600 to-white'}
+                 ${categories.find(c => c.id === selectedCategory)?.theme.bg || 'bg-linear-to-br from-blue-700 via-red-600 to-white'}
              `}></div>
              
              {/* Extra Gradient Wash for vibrancy */}
              <div className={`
                  absolute inset-0 mix-blend-overlay opacity-40 transition-all duration-700
-                 ${categories.find(c => c.id === selectedCategory)?.theme.bg || 'bg-gradient-to-br from-blue-700 via-red-600 to-white'}
+                 ${categories.find(c => c.id === selectedCategory)?.theme.bg || 'bg-linear-to-br from-blue-700 via-red-600 to-white'}
              `}></div>
         </div>
 

@@ -118,7 +118,7 @@ const ComicEffect = ({ word, x, y, rotation }) => {
   return (
     <div
       ref={effectRef}
-      className="fixed pointer-events-none z-[9999]"
+      className="fixed pointer-events-none z-9999"
       style={{
         left: `${x}px`,
         top: `${y}px`,

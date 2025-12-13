@@ -139,7 +139,7 @@ const Events = () => {
   return (
     <>
     {/* Iron Man Theme Section */}
-    <section id="events" ref={sectionRef} className="relative py-20 z-20 bg-gradient-to-b from-black to-[#1a0000] overflow-hidden">
+    <section id="events" ref={sectionRef} className="relative py-20 z-20 bg-linear-to-b from-black to-[#1a0000] overflow-hidden">
       
       {/* Background Decor - Mech Lines */}
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
@@ -199,7 +199,7 @@ const Events = () => {
             />
             {/* JARVIS Overlay Tint */}
             <div className="absolute inset-0 bg-[#AA0505] mix-blend-multiply opacity-20 group-hover:opacity-10 transition-opacity duration-500"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-black via-black/50 to-transparent"></div>
             {/* Halftone on Image */}
              <div className="absolute inset-0 halftone-pattern opacity-10 pointer-events-none z-10"></div>
             

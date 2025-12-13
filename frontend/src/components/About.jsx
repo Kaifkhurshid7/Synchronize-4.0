@@ -77,10 +77,10 @@ const ComicPanel = ({ children, className = "", panelType = "default" }) => {
       {/* Energy Lines */}
       {isHovered && (
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-purple-400 to-transparent animate-pulse" />
-          <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-yellow-400 to-transparent animate-pulse" />
-          <div className="absolute left-0 top-0 w-0.5 h-full bg-gradient-to-b from-transparent via-purple-400 to-transparent animate-pulse" />
-          <div className="absolute right-0 top-0 w-0.5 h-full bg-gradient-to-b from-transparent via-yellow-400 to-transparent animate-pulse" />
+          <div className="absolute top-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-purple-400 to-transparent animate-pulse" />
+          <div className="absolute bottom-0 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-yellow-400 to-transparent animate-pulse" />
+          <div className="absolute left-0 top-0 w-0.5 h-full bg-linear-to-b from-transparent via-purple-400 to-transparent animate-pulse" />
+          <div className="absolute right-0 top-0 w-0.5 h-full bg-linear-to-b from-transparent via-yellow-400 to-transparent animate-pulse" />
         </div>
       )}
       
@@ -171,7 +171,7 @@ const About = () => {
     <section 
       id="about" 
       ref={containerRef} 
-      className="relative min-h-[150vh] py-40 overflow-hidden bg-gradient-to-br from-black via-purple-950 to-black flex items-center justify-center"
+      className="relative min-h-[150vh] py-40 overflow-hidden bg-linear-to-br from-black via-purple-950 to-black flex items-center justify-center"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
@@ -218,9 +218,9 @@ const About = () => {
         
         {/* Hero Section */}
         <div ref={heroRef} className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-800 border-4 border-yellow-400 shadow-[6px_6px_0px_#FFD700] transform -rotate-1">
+          <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-linear-to-r from-purple-600 to-purple-800 border-4 border-yellow-400 shadow-[6px_6px_0px_#FFD700] transform -rotate-1">
             <Crown className="w-6 h-6 text-yellow-400" />
-            <span className="text-white font-black text-sm tracking-widest uppercase">WAKANDA TECH SUMMIT</span>
+            <span className="text-white font-black text-sm tracking-widest uppercase">WAKANDA FOREVER</span>
             <Crown className="w-6 h-6 text-yellow-400" />
           </div>
           
@@ -241,7 +241,7 @@ const About = () => {
             </h2>
             
             <div className="relative inline-block mt-6">
-              <div className="absolute -left-4 top-0 bottom-0 w-3 bg-gradient-to-b from-purple-500 to-yellow-400 transform -skew-x-12" />
+              <div className="absolute -left-4 top-0 bottom-0 w-3 bg-linear-to-b from-purple-500 to-yellow-400 transform -skew-x-12" />
               <p className="text-white text-lg lg:text-xl font-bold pl-6 max-w-2xl mx-auto leading-relaxed">
                 <span className="text-purple-300">"WHERE TECHNOLOGY MEETS TRADITION"</span>
                 <span className="block text-gray-300 font-normal text-base mt-2">
@@ -258,8 +258,8 @@ const About = () => {
           {/* Hero Panel - Spans 2 columns */}
           <ComicPanel panelType="hero" className="md:col-span-2 about-panel p-8">
             <div className="flex items-start gap-6">
-              <div className="flex-shrink-0">
-                <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_#000] transform rotate-12 panel-icon">
+              <div className="shrink-0">
+                <div className="w-16 h-16 bg-linear-to-br from-yellow-400 to-yellow-600 border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_#000] transform rotate-12 panel-icon">
                   <Globe className="w-8 h-8 text-black" />
                 </div>
               </div>
@@ -282,27 +282,27 @@ const About = () => {
 
           {/* Stat Panel 1 */}
           <ComicPanel panelType="stat" className="about-panel p-6 text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 border-4 border-white flex items-center justify-center mx-auto mb-4 shadow-[4px_4px_0px_#000] panel-icon">
+            <div className="w-16 h-16 bg-linear-to-br from-purple-500 to-purple-700 border-4 border-white flex items-center justify-center mx-auto mb-4 shadow-[4px_4px_0px_#000] panel-icon">
               <Users className="w-8 h-8 text-white" />
             </div>
             <h4 className="text-4xl font-black text-white mb-2 font-display italic comic-text-stroke">1000+</h4>
             <p className="text-purple-300 text-sm font-black uppercase tracking-widest">WARRIORS</p>
-            <div className="mt-2 h-1 bg-gradient-to-r from-purple-500 to-yellow-400 mx-auto w-12" />
+            <div className="mt-2 h-1 bg-linear-to-r from-purple-500 to-yellow-400 mx-auto w-12" />
           </ComicPanel>
 
           {/* Stat Panel 2 */}
           <ComicPanel panelType="stat" className="about-panel p-6 text-center">
-            <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 border-4 border-black flex items-center justify-center mx-auto mb-4 shadow-[4px_4px_0px_#000] panel-icon">
+            <div className="w-16 h-16 bg-linear-to-br from-yellow-400 to-yellow-600 border-4 border-black flex items-center justify-center mx-auto mb-4 shadow-[4px_4px_0px_#000] panel-icon">
               <Trophy className="w-8 h-8 text-black" />
             </div>
             <h4 className="text-4xl font-black text-white mb-2 font-display italic comic-text-stroke">₹50K+</h4>
             <p className="text-yellow-400 text-sm font-black uppercase tracking-widest">TREASURE</p>
-            <div className="mt-2 h-1 bg-gradient-to-r from-yellow-400 to-purple-500 mx-auto w-12" />
+            <div className="mt-2 h-1 bg-linear-to-r from-yellow-400 to-purple-500 mx-auto w-12" />
           </ComicPanel>
 
           {/* Feature Panel 1 */}
           <ComicPanel panelType="feature" className="about-panel p-6">
-            <div className="w-14 h-14 bg-gradient-to-br from-purple-600 to-purple-800 border-4 border-purple-400 flex items-center justify-center mb-4 shadow-[3px_3px_0px_#9C27B0] transform -rotate-12 panel-icon">
+            <div className="w-14 h-14 bg-linear-to-br from-purple-600 to-purple-800 border-4 border-purple-400 flex items-center justify-center mb-4 shadow-[3px_3px_0px_#9C27B0] transform -rotate-12 panel-icon">
               <Cpu className="w-7 h-7 text-white" />
             </div>
             <h4 className="text-xl font-black text-white mb-2 font-display italic">CUTTING EDGE</h4>
@@ -311,7 +311,7 @@ const About = () => {
 
           {/* Feature Panel 2 */}
           <ComicPanel panelType="feature" className="about-panel p-6">
-            <div className="w-14 h-14 bg-gradient-to-br from-yellow-500 to-yellow-700 border-4 border-black flex items-center justify-center mb-4 shadow-[3px_3px_0px_#000] transform rotate-12 panel-icon">
+            <div className="w-14 h-14 bg-linear-to-br from-yellow-500 to-yellow-700 border-4 border-black flex items-center justify-center mb-4 shadow-[3px_3px_0px_#000] transform rotate-12 panel-icon">
               <Code className="w-7 h-7 text-black" />
             </div>
             <h4 className="text-xl font-black text-white mb-2 font-display italic">24H BATTLE</h4>
@@ -319,14 +319,14 @@ const About = () => {
           </ComicPanel>
 
           {/* CTA Panel */}
-          <ComicPanel panelType="hero" className="about-panel p-6 bg-gradient-to-br from-purple-600 via-purple-700 to-black">
+          <ComicPanel panelType="hero" className="about-panel p-6 bg-linear-to-br from-purple-600 via-purple-700 to-black">
             <div className="flex items-center justify-between h-full">
               <div>
                 <h4 className="text-2xl font-black text-white mb-1 font-display italic comic-text-stroke">JOIN THE</h4>
                 <h4 className="text-2xl font-black text-yellow-400 font-display italic comic-text-stroke">REVOLUTION</h4>
                 <p className="text-purple-200 text-xs font-black uppercase tracking-wider mt-2">WAKANDA AWAITS</p>
               </div>
-              <div className="w-14 h-14 bg-gradient-to-br from-yellow-400 to-yellow-600 border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_#000] panel-icon">
+              <div className="w-14 h-14 bg-linear-to-br from-yellow-400 to-yellow-600 border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_#000] panel-icon">
                 <Sparkles className="w-7 h-7 text-black" />
               </div>
             </div>
@@ -334,7 +334,7 @@ const About = () => {
 
           {/* Mission Panel */}
           <ComicPanel panelType="feature" className="about-panel p-6">
-            <div className="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-700 border-4 border-yellow-400 flex items-center justify-center mb-4 shadow-[3px_3px_0px_#FFD700] panel-icon">
+            <div className="w-14 h-14 bg-linear-to-br from-purple-500 to-purple-700 border-4 border-yellow-400 flex items-center justify-center mb-4 shadow-[3px_3px_0px_#FFD700] panel-icon">
               <Star className="w-7 h-7 text-white" />
             </div>
             <h4 className="text-xl font-black text-white mb-2 font-display italic">ELITE MISSION</h4>

@@ -92,7 +92,7 @@ const Contact = () => {
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
           <img src={ContactBg} alt="Contact Background" className="w-full h-full object-cover" />
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-red-950/20 to-black pointer-events-none z-10"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-black via-red-950/20 to-black pointer-events-none z-10"></div>
       
       <div className="container mx-auto px-4 z-20 relative">
         {/* Header */}

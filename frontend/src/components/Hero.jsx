@@ -1,12 +1,10 @@
-import { useEffect, useRef, Suspense } from 'react';
+import { useEffect, useRef } from 'react'; // Removed Suspense
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import MagneticButton from './MagneticButton';
-import { Images, Star, Shield } from 'lucide-react'; // Added Star
+import { Images, Star } from 'lucide-react';
 import HeroBg from '../assets/backgrounds/hero-bg.png';
-import { Canvas } from '@react-three/fiber';
-import { Environment, Float, PerspectiveCamera } from '@react-three/drei';
-import { CapShield } from './3d/CapShield'; // Swapped for Shield
+import ComicShield from './ComicShield';
 
 const Hero = () => {
   const containerRef = useRef(null);
@@ -29,9 +27,8 @@ const Hero = () => {
 
       const tl = gsap.timeline();
 
-      // 0. Initial State - Shield is small and visible in center
-      gsap.set(shield.position, { x: 0, y: 0, z: 0 });
-      gsap.set(shield.scale, { x: 0.3, y: 0.3, z: 0.3 }); // Start SMALL but visible
+      // 0. Initial State - Shield is centered
+      gsap.set(shield, { x: 0, y: 0, scale: 1.5, opacity: 1 }); // Start larger
       
       // Hide all content initially
       gsap.set(tagRef.current, { opacity: 0, scale: 0 });
@@ -41,20 +38,20 @@ const Hero = () => {
       gsap.set(buttonsRef.current, { opacity: 0, y: 30 });
 
       // 1. Shield spins in place briefly (establishing shot)
-      tl.to(shield.rotation, { 
-          z: Math.PI * 2, 
+      tl.to(shield, { 
+          rotation: 360, 
           duration: 0.6, 
           ease: 'power2.inOut' 
       })
       
-      // 2. Shield moves to TAG position and reveals it
-      .to(shield.position, { 
-          x: -5, 
-          y: 3.5, 
+      // 2. Shield moves to TAG position (Top Leftish)
+      .to(shield, { 
+          x: "-30vw", 
+          y: "-35vh", 
           duration: 0.5, 
           ease: 'power2.inOut' 
       })
-      .to(shield.rotation, { z: Math.PI * 3, duration: 0.5 }, '<')
+      .to(shield, { rotation: 540, duration: 0.5 }, '<')
       .to(tagRef.current, { 
           opacity: 1, 
           scale: 1, 
@@ -62,14 +59,14 @@ const Hero = () => {
           ease: 'back.out(1.7)' 
       }, '>-0.2')
       
-      // 3. Shield moves to TITLE position and reveals "SYNCHRONIZE"
-      .to(shield.position, { 
-          x: -4, 
-          y: 1, 
+      // 3. Shield moves to TITLE position (Left Mid)
+      .to(shield, { 
+          x: "-25vw", 
+          y: "-10vh", 
           duration: 0.5, 
           ease: 'power2.inOut' 
       })
-      .to(shield.rotation, { z: Math.PI * 4, duration: 0.5 }, '<')
+      .to(shield, { rotation: 720, duration: 0.5 }, '<')
       .to(textRef.current.children[0], { 
           opacity: 1, 
           x: 0, 
@@ -77,14 +74,14 @@ const Hero = () => {
           ease: 'power2.out' 
       }, '>-0.2')
       
-      // 4. Shield moves to SUBTEXT position and reveals it
-      .to(shield.position, { 
-          x: -3, 
-          y: -1.5, 
+      // 4. Shield moves to SUBTEXT position (Lower Left)
+      .to(shield, { 
+          x: "-20vw", 
+          y: "15vh", 
           duration: 0.5, 
           ease: 'power2.inOut' 
       })
-      .to(shield.rotation, { z: Math.PI * 5, duration: 0.5 }, '<')
+      .to(shield, { rotation: 900, duration: 0.5 }, '<')
       .to(subTextRef.current, { 
           opacity: 1, 
           y: 0, 
@@ -92,14 +89,14 @@ const Hero = () => {
           ease: 'power2.out' 
       }, '>-0.2')
       
-      // 5. Shield moves to BUTTONS position and reveals them
-      .to(shield.position, { 
-          x: -2, 
-          y: -3, 
+      // 5. Shield moves to BUTTONS position (Bottom)
+      .to(shield, { 
+          x: "-10vw", 
+          y: "30vh", 
           duration: 0.5, 
           ease: 'power2.inOut' 
       })
-      .to(shield.rotation, { z: Math.PI * 6, duration: 0.5 }, '<')
+      .to(shield, { rotation: 1080, duration: 0.5 }, '<')
       .to(buttonsRef.current, { 
           opacity: 1, 
           y: 0, 
@@ -107,25 +104,16 @@ const Hero = () => {
           ease: 'power2.out' 
       }, '>-0.2')
       
-      // 6. FINAL: Shield lands as "0" in "4.0" and grows to full size
-      .to(shield.position, { 
-          x: -4.3,  // Adjusted to align better with "4." 
-          y: 0.5,  // Adjusted vertical alignment
-          z: 0, 
+      // 6. FINAL: Shield lands as "0" in "4.0" and shrinks
+      .to(shield, { 
+          x: "-100px",  // Manual tuning needed for alignment with "4."
+          y: "-20px",   // Fine tuning
+          scale: 0.4,   // Shrink to fit
           duration: 0.8, 
           ease: 'elastic.out(1, 0.5)' 
       })
-      .to(shield.scale, { 
-          x: 0.12,  // Slightly larger to match text size
-          y: 0.12, 
-          z: 0.12, 
-          duration: 0.8, 
-          ease: 'elastic.out(1, 0.5)' 
-      }, '<')
-      .to(shield.rotation, { 
-          x: 0, 
-          y: 0, 
-          z: 0, 
+      .to(shield, { 
+          rotation: 1440, // 4 spins total?
           duration: 0.8 
       }, '<')
       
@@ -159,23 +147,11 @@ const Hero = () => {
         {/* <div className="absolute inset-0 bg-[repeating-conic-gradient(from_0deg_at_50%_50%,transparent_0deg,transparent_10deg,rgba(255,255,255,0.05)_10deg,rgba(255,255,255,0.05)_20deg)] animate-[spin_60s_linear_infinite] pointer-events-none z-10"></div> */}
       </div>
 
-      {/* 2. 3D Layer: The Shield - Now Controlled by Animation */}
-      <div className="absolute inset-0 z-10 pointer-events-none">
-        <Canvas gl={{ antialias: true, alpha: true }}>
-           <Suspense fallback={null}>
-             <PerspectiveCamera makeDefault position={[0, 0, 10]} />
-             
-             {/* Shield directly in scene for explicit control */}
-             <CapShield ref={shieldRef} scale={1} /> 
-
-             {/* Dynamic Studio Lighting */}
-             <ambientLight intensity={1} />
-             <directionalLight position={[-5, 5, 5]} intensity={3} color="#ffffff" />
-             <pointLight position={[5, -5, 5]} intensity={2} color="#AA0505" /> {/* Red Rim Light */}
-             <Environment preset="city" />
-           </Suspense>
-        </Canvas>
+      {/* 2. The Shield - Now 2D Comic Version */}
+      <div className="absolute inset-0 z-30 pointer-events-none flex items-center justify-center">
+         <ComicShield ref={shieldRef} className="w-[300px] h-[300px]" />
       </div>
+
       
       {/* 3. Comic Book Content - Adjusted Layout for Shield Integration */}
       <div className="absolute inset-0 z-20 flex flex-col justify-center items-start px-8 md:px-20 lg:px-32 pointer-events-none pt-16">

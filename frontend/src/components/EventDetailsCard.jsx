@@ -45,7 +45,7 @@ const EventDetailsCard = ({ event, onClose }) => {
 
   return (
     <div
-      className="modal-overlay fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-3 sm:p-4"
+      className="modal-overlay fixed inset-0 bg-black/80 backdrop-blur-sm z-100 flex items-center justify-center p-3 sm:p-4"
       onClick={handleClose}
       aria-modal="true"
       role="dialog"
@@ -53,11 +53,11 @@ const EventDetailsCard = ({ event, onClose }) => {
     >
       {/* Comic Style Background Pattern */}
       <div className="absolute inset-0 z-0 bg-[#1a0000] opacity-90 pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(#AA0505_1px,transparent_1px)] [background-size:20px_20px] opacity-30"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(#AA0505_1px,transparent_1px)] bg-size-[20px_20px] opacity-30"></div>
       </div>
 
       <div
-        className="modal-content relative z-[110] w-full max-w-4xl h-[85vh] sm:h-[90vh] bg-white border-4 border-black shadow-[12px_12px_0px_#AA0505] flex flex-col overflow-hidden"
+        className="modal-content relative z-110 w-full max-w-4xl h-[85vh] sm:h-[90vh] bg-white border-4 border-black shadow-[12px_12px_0px_#AA0505] flex flex-col overflow-hidden"
         onClick={stopProp}
       >
         {/* Comic Header Bar */}
@@ -65,14 +65,14 @@ const EventDetailsCard = ({ event, onClose }) => {
             {/* Striped Pattern */}
             <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(0,0,0,0.1)_10px,rgba(0,0,0,0.1)_20px)]"></div>
             
-            <span className="relative z-10 text-[#FFD700] font-display font-black italic tracking-wider text-xl" style={{ WebkitTextStroke: '1px black', textShadow: '2px 2px 0px #000' }}>
+            <span className="relative z-10 text-iron-gold font-display font-black italic tracking-wider text-xl" style={{ WebkitTextStroke: '1px black', textShadow: '2px 2px 0px #000' }}>
               STARK INDUSTRIES
             </span>
 
             {/* Close Button - Comic Style */}
             <button
               onClick={handleClose}
-              className="group cursor-pointer relative z-10 bg-[#FFD700] hover:bg-[#ED1D24] border-2 border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:scale-125 hover:rotate-90 transition-all duration-300 w-8 h-8 flex items-center justify-center rounded-sm"
+              className="group cursor-pointer relative z-10 bg-iron-gold hover:bg-marvel-red border-2 border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:scale-125 hover:rotate-90 transition-all duration-300 w-8 h-8 flex items-center justify-center rounded-sm"
               aria-label="Close"
             >
               <X className="w-6 h-6 text-black group-hover:text-white stroke-[3px] transition-colors duration-300" />
@@ -91,7 +91,7 @@ const EventDetailsCard = ({ event, onClose }) => {
           
           {/* Title Box - Overlapping */}
           <div className="absolute -bottom-6 left-6 z-30">
-            <div className="bg-[#FFD700] border-4 border-black px-6 py-2 shadow-[8px_8px_0px_#000] transform -rotate-2">
+            <div className="bg-iron-gold border-4 border-black px-6 py-2 shadow-[8px_8px_0px_#000] transform -rotate-2">
               <h2 className="text-3xl sm:text-5xl font-display font-black text-[#AA0505] italic uppercase whitespace-nowrap" style={{ WebkitTextStroke: '1.5px black' }}>
                 {event.title}
               </h2>
@@ -115,7 +115,7 @@ const EventDetailsCard = ({ event, onClose }) => {
           className="flex-1 overflow-y-auto scrollbar-custom bg-[#F0F0F0] p-4 sm:p-6 pt-10 sm:pt-12 relative z-10"
         >
           {/* Ben-Day Dots Background */}
-          <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:10px_10px]"></div>
+          <div className="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#000_1px,transparent_1px)] bg-size-[10px_10px]"></div>
 
           <div className="relative z-10 max-w-3xl mx-auto">
              {/* Description Bubble */}
@@ -131,7 +131,7 @@ const EventDetailsCard = ({ event, onClose }) => {
              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
                 {/* Date */}
                 <div className="bg-[#AA0505] border-3 border-black p-3 text-center shadow-[4px_4px_0px_#000]">
-                   <p className="text-[#FFD700] font-black text-xs uppercase mb-1">Date</p>
+                   <p className="text-iron-gold font-black text-xs uppercase mb-1">Date</p>
                    <p className="text-white font-display font-bold text-lg leading-tight">{event.date}</p>
                 </div>
                 {/* Venue */}
@@ -140,7 +140,7 @@ const EventDetailsCard = ({ event, onClose }) => {
                    <p className="text-white font-display font-bold text-lg leading-tight">{event.venue}</p>
                 </div>
                 {/* Prize */}
-                <div className="bg-[#FFD700] border-3 border-black p-3 text-center shadow-[4px_4px_0px_#000]">
+                <div className="bg-iron-gold border-3 border-black p-3 text-center shadow-[4px_4px_0px_#000]">
                    <p className="text-black font-black text-xs uppercase mb-1">Bounty</p>
                    <p className="text-[#AA0505] font-display font-black text-xl leading-tight">{event.prize}</p>
                 </div>
@@ -149,7 +149,7 @@ const EventDetailsCard = ({ event, onClose }) => {
              {/* POC Section - Comic Box */}
              <div className="border-3 border-black bg-white p-4 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-[5px_5px_0px_#000]">
                 <div className="flex items-center gap-3">
-                   <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center border-2 border-[#FFD700]">
+                   <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center border-2 border-iron-gold">
                       <User className="text-white w-6 h-6" />
                    </div>
                    <div>
@@ -169,8 +169,8 @@ const EventDetailsCard = ({ event, onClose }) => {
                rel="noopener noreferrer"
                className="block w-full"
              >
-               <button className="w-full py-4 bg-[#00BCD4] border-4 border-black font-display font-black text-2xl text-white uppercase italic tracking-wider shadow-[8px_8px_0px_#000] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_#000] hover:bg-[#00E5FF] transition-all transform skew-x-[-6deg]">
-                  <span className="inline-block skew-x-[6deg] drop-shadow-[2px_2px_0px_#000]">
+               <button className="w-full py-4 bg-thor-blue border-4 border-black font-display font-black text-2xl text-white uppercase italic tracking-wider shadow-[8px_8px_0px_#000] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_#000] hover:bg-[#00E5FF] transition-all transform -skew-x-6">
+                  <span className="inline-block skew-x-6 drop-shadow-[2px_2px_0px_#000]">
                      ENLIST NOW!
                   </span>
                </button>

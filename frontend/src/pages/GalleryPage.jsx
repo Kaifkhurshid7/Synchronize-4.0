@@ -350,7 +350,7 @@ const GalleryPage = () => {
 
                     {/* "Flash" Sticker on random cards */}
                     {index % 3 === 0 && (
-                        <div className="absolute -bottom-4 -left-4 bg-[#FFD700] border-2 border-black px-2 py-1 transform -rotate-12 z-30 shadow-[2px_2px_0px_#000]">
+                        <div className="absolute -bottom-4 -left-4 bg-iron-gold border-2 border-black px-2 py-1 transform -rotate-12 z-30 shadow-[2px_2px_0px_#000]">
                             <span className="text-xs font-black">POP!</span>
                         </div>
                     )}
@@ -390,7 +390,7 @@ const GalleryPage = () => {
         {/* Comic Lightbox Modal */}
         {selectedImage && (
           <div 
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
+            className="fixed inset-0 z-100 flex items-center justify-center p-4 sm:p-8 animate-fadeIn"
             onClick={closeLightbox}
           >
             <div className="absolute inset-0 bg-black/90 backdrop-blur-md" >

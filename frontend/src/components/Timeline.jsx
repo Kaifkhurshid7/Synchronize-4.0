@@ -204,7 +204,7 @@ const Timeline = () => {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-16 relative">
-             <h2 className="text-5xl sm:text-6xl md:text-8xl font-display font-black italic text-transparent bg-clip-text bg-gradient-to-b from-green-400 to-emerald-700 drop-shadow-[4px_4px_0px_#064E3B] mb-4 tracking-tighter" style={{ WebkitTextStroke: '2px black' }}>
+             <h2 className="text-5xl sm:text-6xl md:text-8xl font-display font-black italic text-transparent bg-clip-text bg-linear-to-b from-green-400 to-emerald-700 drop-shadow-[4px_4px_0px_#064E3B] mb-4 tracking-tighter" style={{ WebkitTextStroke: '2px black' }}>
                SCHEDULE
              </h2>
              <div className="inline-block bg-white border-4 border-black px-4 py-2 transform -rotate-2 shadow-[6px_6px_0px_#10B981] mb-6 relative">
@@ -239,7 +239,7 @@ const Timeline = () => {
         <div id="timeline-container" ref={timelineContainerRef} className="relative max-w-4xl mx-auto">
           {/* Central Line - The Time Stream */}
           <div className="absolute left-[15px] sm:left-[19px] md:left-1/2 top-0 bottom-0 w-2 bg-emerald-900/30 -translate-x-1/2 border-l-2 border-r-2 border-emerald-900/10"></div>
-          <div ref={lineRef} className="absolute left-[15px] sm:left-[19px] md:left-1/2 top-0 w-2 bg-gradient-to-b from-green-400 via-emerald-500 to-green-600 -translate-x-1/2 origin-top shadow-[0_0_15px_#10B981]"></div>
+          <div ref={lineRef} className="absolute left-[15px] sm:left-[19px] md:left-1/2 top-0 w-2 bg-linear-to-b from-green-400 via-emerald-500 to-green-600 -translate-x-1/2 origin-top shadow-[0_0_15px_#10B981]"></div>
 
           {currentSchedule.map((item, index) => (
             <div key={`${activeDay}-${index}`} className={`relative flex items-center mb-16 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
