@@ -154,7 +154,7 @@ const Footer = () => {
                 >
                   <div className="bg-white border-2 border-black p-2 flex items-center gap-3 hover:translate-y-[-2px] comic-shadow-hover transition-all duration-200 transform hover:-rotate-1">
                     <span className="text-lg">{link.icon}</span>
-                    <span className="text-sm text-black font-bold group-hover:text-[#AA0505] transition-colors duration-200">
+                    <span className="text-md font-bold text-black">
                       {link.name}
                     </span>
                     <ArrowRight className="w-4 h-4 text-[#0055AA] ml-auto group-hover:translate-x-1 transition-transform duration-200" />

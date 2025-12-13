@@ -7,9 +7,16 @@ import gsap from 'gsap';
 const GlobalComicEffects = () => {
   const [effects, setEffects] = useState([]);
   const comicWords = ['POW!', 'BOOM!', 'KABOOM!', 'WHAM!', 'ZAP!', 'BANG!', 'CRASH!', 'SMASH!'];
+  // Use location to check if we are on gallery page
+  const location = window.location.pathname;
 
   useEffect(() => {
     const handleClick = (e) => {
+      // If on gallery page, ONLY trigger if clicking inside the navbar
+      if (location === '/gallery' || location === '/gallery/') {
+          if (!e.target.closest('nav')) return;
+      }
+      
       const word = comicWords[Math.floor(Math.random() * comicWords.length)];
       
       // Calculate offset using polar coordinates
@@ -36,7 +43,7 @@ const GlobalComicEffects = () => {
 
     window.addEventListener('click', handleClick);
     return () => window.removeEventListener('click', handleClick);
-  }, []);
+  }, [location]); // Add location dependency
 
   return (
     <>

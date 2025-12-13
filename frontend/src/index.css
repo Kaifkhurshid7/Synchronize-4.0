@@ -225,9 +225,9 @@
 
 /* Hide navbar when modal is open */
 body.modal-open .navbar-main {
+  visibility: hidden;
   opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 /* Comic Book Utilities */
@@ -376,4 +376,73 @@ body.modal-open .navbar-main {
 .navbar-blur {
   backdrop-filter: blur(8px);
   background: rgba(255, 255, 255, 0.9);
+}
+
+/* Comic Book extras */
+.speech-bubble {
+  position: relative;
+  background: white;
+  border: 4px solid black;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-top-color: black;
+  border-bottom: 0;
+  margin-left: -20px;
+  margin-bottom: -20px;
+}
+
+.comic-border-dashed {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='0' ry='0' stroke='black' stroke-width='4' stroke-dasharray='15%2c 15' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+/* Stark Tech Extras */
+.tech-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
+}
+
+.tech-border-glow {
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.5), inset 0 0 5px rgba(0, 242, 255, 0.2);
+}
+
+.iron-man-glow {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), inset 0 0 10px rgba(170, 5, 5, 0.2);
+}
+
+.hologram-scan {
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 242, 255, 0.1) 50%,
+    rgba(0, 242, 255, 0.1) 52%,
+    transparent 52%
+  );
+  background-size: 100% 10px;
+  animation: hologram-scan 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes hologram-scan {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(50%); }
+}
+
+.text-stroke-tech {
+  -webkit-text-stroke: 1px #00F2FF;
+  text-shadow: 0 0 5px #00F2FF;
+}
+
+.text-stroke-gold {
+  -webkit-text-stroke: 1px #FFD700;
+  text-shadow: 2px 2px 0px #AA0505;
 }

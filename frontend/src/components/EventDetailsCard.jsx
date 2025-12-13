@@ -45,7 +45,7 @@ const EventDetailsCard = ({ event, onClose }) => {
 
   return (
     <div
-      className="modal-overlay fixed inset-0 bg-black/80 backdrop-blur-sm z-100 flex items-center justify-center p-3 sm:p-4"
+      className="modal-overlay fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center p-3 sm:p-4"
       onClick={handleClose}
       aria-modal="true"
       role="dialog"
@@ -57,7 +57,7 @@ const EventDetailsCard = ({ event, onClose }) => {
       </div>
 
       <div
-        className="modal-content relative z-110 w-full max-w-4xl h-[85vh] sm:h-[90vh] bg-white border-4 border-black shadow-[12px_12px_0px_#AA0505] flex flex-col overflow-hidden"
+        className="modal-content relative z-[110] w-full max-w-4xl h-[85vh] sm:h-[90vh] bg-white border-4 border-black shadow-[12px_12px_0px_#AA0505] flex flex-col overflow-hidden"
         onClick={stopProp}
       >
         {/* Comic Header Bar */}
@@ -72,10 +72,10 @@ const EventDetailsCard = ({ event, onClose }) => {
             {/* Close Button - Comic Style */}
             <button
               onClick={handleClose}
-              className="cursor-pointer relative z-10 bg-[#FFD700] border-2 border-black hover:translate-y-0.5 hover:shadow-none shadow-[4px_4px_0px_#000] transition-all w-8 h-8 flex items-center justify-center rounded-sm"
+              className="group cursor-pointer relative z-10 bg-[#FFD700] hover:bg-[#ED1D24] border-2 border-black shadow-[4px_4px_0px_#000] hover:shadow-[6px_6px_0px_#000] hover:scale-125 hover:rotate-90 transition-all duration-300 w-8 h-8 flex items-center justify-center rounded-sm"
               aria-label="Close"
             >
-              <X className="w-6 h-6 text-black stroke-[3px]" />
+              <X className="w-6 h-6 text-black group-hover:text-white stroke-[3px] transition-colors duration-300" />
             </button>
         </div>
 

@@ -140,7 +140,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`fixed top-6 left-0 w-full z-50 px-4 sm:px-8 py-4 transition-all duration-300 ${isOpen ? '' : 'pointer-events-none'}`}>
+      <nav className={`navbar-main fixed top-6 left-0 w-full z-50 px-4 sm:px-8 py-4 transition-all duration-300 ${isOpen ? '' : 'pointer-events-none'}`}>
         <div className={`max-w-7xl mx-auto flex justify-between items-center pointer-events-auto`}>
           
           {/* Logo Badge */}
