@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
-@theme: root{
+@theme {
   --font-sans: "Rubik", sans-serif;
   --font-display: "Montserrat", sans-serif;
 
-  /* Vivid Avengers Palette */
+  /* Tailwind Color Utilities - defined with 'color-' prefix to generate text-*, bg-*, border-* classes */
   --color-marvel-red: #ed1d24;
   --color-iron-red: #d2161e;
   --color-iron-gold: #ffd700;
@@ -264,6 +264,30 @@
 
   .animate-pulse-fast {
     animation: pulse-fast 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes ping-fast {
+    75%, 100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  .animate-ping-fast {
+    animation: ping-fast 0.4s cubic-bezier(0, 0, 0.2, 1) forwards; 
+  }
+
+  @keyframes fade-out-fast {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .animate-fade-out-fast {
+    animation: fade-out-fast 0.5s ease-out forwards;
   }
 }
 

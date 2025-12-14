@@ -181,11 +181,11 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: "Home", path: "/", color: "var(--color-marvel-red)", image: ironManImg, character: "IRON MAN" },
-    { name: "Events", path: "/events", color: "var(--color-hulk-green)", image: hulkImg, character: "THE HULK" },
-    { name: "Schedule", path: "/#schedule", color: "var(--color-iron-gold)", image: thorImg, character: "THOR" },
-    { name: "Sponsors", path: "/#sponsors", color: "var(--color-cap-blue)", image: captainAmericaImg, character: "CAPTAIN AMERICA" },
-    { name: "Team", path: "/team", color: "var(--color-panther-purple)", image: blackPantherImg, character: "BLACK PANTHER" },
+    { name: "Home", path: "/", color: "var(--marvel-red)", image: ironManImg, character: "IRON MAN" },
+    { name: "Events", path: "/events", color: "var(--hulk-green)", image: hulkImg, character: "THE HULK" },
+    { name: "Schedule", path: "/#schedule", color: "var(--iron-gold)", image: thorImg, character: "THOR" },
+    { name: "Sponsors", path: "/#sponsors", color: "var(--cap-blue)", image: captainAmericaImg, character: "CAPTAIN AMERICA" },
+    { name: "Team", path: "/team", color: "var(--panther-purple)", image: blackPantherImg, character: "BLACK PANTHER" },
     { name: "Gallery", path: "/gallery", color: "white", image: blackWidowImg, character: "BLACK WIDOW" },
   ];
 
@@ -207,7 +207,7 @@ const Navbar = () => {
           <Link 
             to="/" 
             onClick={() => setIsOpen(false)} 
-            className={`relative group cursor-pointer bg-white px-6 py-3 transform -skew-x-6 transition-all duration-300 ${stickerClass} hover:scale-105 hover:rotate-2 hover:shadow-[8px_8px_0px_var(--color-marvel-red)]! hover:-translate-y-1`}
+            className={`relative group cursor-pointer bg-white px-6 py-3 transform -skew-x-6 transition-all duration-300 ${stickerClass} hover:scale-105 hover:rotate-2 hover:shadow-[8px_8px_0px_var(--marvel-red)]! hover:-translate-y-1`}
           >
             <div className="flex items-center gap-2 transform skew-x-6">
                 <div className="flex flex-col items-center">
@@ -316,8 +316,8 @@ const Navbar = () => {
           <h2 
             className="text-xl font-mono tracking-widest mb-8 border-b-2 pb-2 uppercase transition-colors duration-300"
             style={{ 
-              color: hoveredLink !== null ? navLinks[hoveredLink].color : 'var(--color-marvel-red)',
-              borderColor: hoveredLink !== null ? navLinks[hoveredLink].color : 'var(--color-marvel-red)'
+              color: hoveredLink !== null ? navLinks[hoveredLink].color : 'var(--marvel-red)',
+              borderColor: hoveredLink !== null ? navLinks[hoveredLink].color : 'var(--marvel-red)'
             }}
           >
               {hoveredLink !== null ? `// ${navLinks[hoveredLink].character}` : 'CLASSIFIED FILES'}
