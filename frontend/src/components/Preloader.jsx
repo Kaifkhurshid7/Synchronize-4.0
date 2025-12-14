@@ -112,7 +112,8 @@ const Preloader = ({ onComplete }) => {
       {/* Red Marvel-like Box */}
       <div 
         ref={redBoxRef}
-        className="relative flex items-center justify-center bg-marvel-red text-white overflow-hidden w-[400px] md:w-[500px] h-[120px] shadow-[10px_10px_0px_0px_rgba(255,255,255,0.2)]"
+        className="relative flex items-center justify-center text-white overflow-hidden w-[400px] md:w-[500px] h-[120px] shadow-[10px_10px_0px_0px_rgba(255,255,255,0.2)]"
+        style={{ backgroundColor: '#ED1D24' }}
       >
         {/* Flipping Text Strip */}
         <div ref={textStripRef} className="absolute inset-0 flex flex-col items-center justify-center font-black italic tracking-tighter text-4xl md:text-5xl uppercase leading-none px-4 text-center">
