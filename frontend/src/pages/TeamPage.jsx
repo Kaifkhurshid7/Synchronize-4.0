@@ -204,6 +204,9 @@ const TeamMemberCard = ({ member, index, setActiveBg }) => {
 
   const [isHovered, setIsHovered] = useState(false);
 
+  const DARK_THEME_NAMES = ["black-widow", "wolverine", "hawkeye", "scarlet-witch", "captain-america", "iron-man", "black-panther", "deadpool"];
+  const isDarkTheme = DARK_THEME_NAMES.includes(theme.name);
+
   const handleInteractionStart = () => {
     setIsHovered(true);
     setActiveBg(theme.bg);
@@ -266,7 +269,7 @@ const TeamMemberCard = ({ member, index, setActiveBg }) => {
         <div
           className="absolute top-2 right-2 font-black text-xs"
           style={{
-            color: ["black-widow", "wolverine", "hawkeye", "scarlet-witch", "captain-america", "iron-man", "black-panther", "deadpool"].includes(theme.name) ? "white" : "black",
+            color: isDarkTheme ? "white" : "black",
           }}
         >
           #{index + 1}
@@ -310,7 +313,7 @@ const TeamMemberCard = ({ member, index, setActiveBg }) => {
           <span 
             className="text-xs sm:text-sm font-black uppercase tracking-widest drop-shadow-md"
             style={{
-                color: ["black-widow", "wolverine", "hawkeye", "scarlet-witch", "captain-america", "iron-man", "black-panther", "deadpool"].includes(theme.name) ? "white" : "black",
+                color: isDarkTheme ? "white" : "black",
             }}
           >
             {theme.alias}
@@ -341,7 +344,7 @@ const TeamMemberCard = ({ member, index, setActiveBg }) => {
             <span 
               className="block transform skew-x-12 font-bold text-xs uppercase tracking-wider"
               style={{
-                color: ["black-widow", "wolverine", "hawkeye", "scarlet-witch", "captain-america", "iron-man", "black-panther", "deadpool"].includes(theme.name) ? "white" : "black",
+                color: isDarkTheme ? "white" : "black",
               }}
             >
                 {member.role}
@@ -359,20 +362,20 @@ const TeamMemberCard = ({ member, index, setActiveBg }) => {
             <a
               key={i}
               href={social.href}
-              className="w-10 h-10 flex items-center justify-center border-2 border-black bg-white hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000] transition-all duration-200 group-social"
+              className="w-10 h-10 flex items-center justify-center border-2 border-black bg-white hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000] transition-all duration-200 group-social text-black"
               style={{
                 "--hover-bg": theme.secondary,
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = theme.secondary;
-                // e.currentTarget.style.color = "white"; // Optional: if text contrast needs change
+                if (isDarkTheme) e.currentTarget.style.color = "white";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = "white";
-                // e.currentTarget.style.color = "black";
+                e.currentTarget.style.color = "black";
               }}
             >
-              <social.Icon className="w-5 h-5 text-black" />
+              <social.Icon className="w-5 h-5" />
             </a>
           ))}
         </div>
@@ -430,7 +433,7 @@ const TeamPage = () => {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen relative pt-32 pb-20 overflow-x-hidden bg-black"
+      className="min-h-screen relative pt-32 pb-20 lg:pt-36 overflow-x-hidden bg-black"
     >
       {/* Dynamic Background */}
       <div className="fixed inset-0 z-0">
