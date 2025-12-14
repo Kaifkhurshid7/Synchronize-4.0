@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
@@ -13,15 +13,42 @@ import {
   Hammer,
   Crown,
   Heart,
+  Flame,
+  Globe,
+  Ghost,
+  Eye,
+  Target,
+  Rocket,
+  Sun,
+  Aperture,
 } from "lucide-react";
 
 // Import Generated Assets
-import avengersBg from "../assets/avengers_bg.png";
-import heroIron from "../assets/hero_iron.png";
-import heroCap from "../assets/hero_cap.png";
-import heroHulk from "../assets/hero_hulk.png";
-import heroThor from "../assets/hero_thor.png";
-import heroPanther from "../assets/hero_panther.png";
+import bgAvengers from "../assets/comic_theme/bg_avengers_main.png"; 
+import bgIronMan from "../assets/comic_theme/bg_ironman.png";
+import bgCap from "../assets/comic_theme/bg_cap.png";
+import bgHulk from "../assets/comic_theme/bg_hulk.png";
+import bgThor from "../assets/comic_theme/bg_thor.png";
+import bgPanther from "../assets/comic_theme/bg_panther.png";
+import bgWidow from "../assets/comic_theme/bg_widow.png";
+import bgSpiderman from "../assets/comic_theme/bg_spiderman.png";
+import bgStrange from "../assets/comic_theme/bg_strange.png";
+import bgCaptainMarvel from "../assets/comic_theme/bg_captainmarvel.png";
+import bgWolverine from "../assets/comic_theme/bg_wolverine.png";
+import bgDeadpool from "../assets/comic_theme/bg_deadpool.png";
+import bgScarletWitch from "../assets/comic_theme/bg_scarletwitch.png";
+import bgVision from "../assets/comic_theme/bg_vision.png";
+// Note: Ant-Man, Hawkeye, Star-Lord failed generation, using placeholders for now if assigned
+// import bgAntMan from "../assets/comic_theme/bg_antman.png";
+// import bgHawkeye from "../assets/comic_theme/bg_hawkeye.png";
+// import bgStarlord from "../assets/comic_theme/bg_starlord.png";
+
+import portraitIron from "../assets/comic_theme/portrait_ironman.png";
+import portraitCap from "../assets/comic_theme/portrait_cap.png";
+import portraitHulk from "../assets/comic_theme/portrait_hulk.png";
+import portraitThor from "../assets/comic_theme/portrait_thor.png";
+import portraitPanther from "../assets/comic_theme/portrait_panther.png";
+import portraitWidow from "../assets/comic_theme/portrait_widow.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,20 +56,22 @@ const MARVEL_THEMES = [
   {
     name: "iron-man",
     primary: "#D2161E",
-    secondary: "#FFD700",
+    secondary: "#D2161E",
     accent: "#FFFFFF",
     gradient: "from-[#D2161E] to-[#800000]",
     icon: Zap,
     alias: "The Armored Avid",
+    bg: bgIronMan,
   },
   {
     name: "captain-america",
     primary: "#1976D2",
-    secondary: "#FFFFFF",
-    accent: "#D2161E",
+    secondary: "#1976D2",
+    accent: "#FFFFFF",
     gradient: "from-[#1976D2] to-[#0D47A1]",
     icon: Shield,
     alias: "The First Developer",
+    bg: bgCap,
   },
   {
     name: "hulk",
@@ -52,6 +81,7 @@ const MARVEL_THEMES = [
     gradient: "from-[#4CAF50] to-[#1B5E20]",
     icon: Star,
     alias: "The Incredible Coder",
+    bg: bgHulk,
   },
   {
     name: "thor",
@@ -61,49 +91,137 @@ const MARVEL_THEMES = [
     gradient: "from-[#00BCD4] to-[#006064]",
     icon: Hammer,
     alias: "God of Backend",
+    bg: bgThor,
   },
   {
     name: "black-panther",
     primary: "#9C27B0",
-    secondary: "#FFD700",
+    secondary: "#9C27B0",
     accent: "#212121",
     gradient: "from-[#9C27B0] to-[#4A148C]",
     icon: Crown,
     alias: "King of Design",
+    bg: bgPanther,
   },
   {
     name: "black-widow",
-    primary: "#212121",
-    secondary: "#D2161E",
+    primary: "#E62429",
+    secondary: "#111111",
     accent: "#FFFFFF",
-    gradient: "from-[#424242] to-[#212121]",
+    gradient: "from-[#E62429] to-[#111111]",
     icon: Heart,
     alias: "The Silent Fixer",
+    bg: bgWidow,
   },
+  // New Themes
+  {
+    name: "spiderman",
+    primary: "#F44336",
+    secondary: "#2196F3",
+    icon: Globe,
+    alias: "The Web Head",
+    bg: bgSpiderman,
+  },
+  {
+    name: "doctor-strange",
+    primary: "#673AB7",
+    secondary: "#FF9800",
+    icon: Eye,
+    alias: "Sorcerer Supreme",
+    bg: bgStrange,
+  },
+  {
+    name: "captain-marvel",
+    primary: "#FFC107",
+    secondary: "#D32F2F",
+    icon: Sun, // best fit for Star/Sun
+    alias: "Binary Power",
+    bg: bgCaptainMarvel,
+  },
+  {
+    name: "wolverine",
+    primary: "#FFEB3B",
+    secondary: "#212121",
+    icon: Flame, // Claws/Rage
+    alias: "The Best There Is",
+    bg: bgWolverine,
+  },
+  {
+    name: "deadpool",
+    primary: "#D32F2F",
+    secondary: "#212121",
+    icon: Target,
+    alias: "Merc With a Mouth",
+    bg: bgDeadpool,
+  },
+  {
+    name: "scarlet-witch",
+    primary: "#C2185B",
+    secondary: "#000000",
+    icon: Ghost, // Magic/Mystic
+    alias: "Chaos Magic",
+    bg: bgScarletWitch,
+  },
+  {
+    name: "vision",
+    primary: "#4CAF50",
+    secondary: "#E91E63",
+    icon:  Aperture,
+    alias: "The Synthezoid",
+    bg: bgVision,
+  },
+  // Fallbacks for missing generated assets
+  {
+    name: "ant-man",
+    primary: "#E53935",
+    secondary: "#BDBDBD",
+    icon: Rocket,
+    alias: "Small But Mighty",
+    bg: bgAvengers, // Fallback
+  },
+  {
+    name: "hawkeye",
+    primary: "#7B1FA2",
+    secondary: "#212121",
+    icon: Target,
+    alias: "The Sharpshooter",
+    bg: bgAvengers, // Fallback
+  },
+  {
+    name: "starlord",
+    primary: "#5C6BC0",
+    secondary: "#FBC02D",
+    icon: Rocket,
+    alias: "Star-Lord",
+    bg: bgAvengers, // Fallback
+  }
 ];
 
-const TeamMemberCard = ({ member, index }) => {
+const TeamMemberCard = ({ member, index, setActiveBg }) => {
   const cardRef = useRef(null);
   const theme = MARVEL_THEMES[index % MARVEL_THEMES.length];
   const Icon = theme.icon;
 
   const handleMouseEnter = () => {
+    setActiveBg(theme.bg);
     gsap.to(cardRef.current, {
-      y: -10,
-      scale: 1.02,
-      rotation: Math.random() * 2 - 1,
-      boxShadow: `12px 12px 0px 0px ${theme.primary}`,
+      y: -15,
+      scale: 1.05,
+      rotation: Math.random() * 4 - 2, // More erratic comic rotation
+      boxShadow: `16px 16px 0px 0px ${theme.primary}`,
       duration: 0.3,
       ease: "back.out(1.7)",
     });
   };
 
   const handleMouseLeave = () => {
+    setActiveBg(null); // Reset to default
     gsap.to(cardRef.current, {
       y: 0,
       scale: 1,
       rotation: 0,
-      boxShadow: "6px 6px 0px 0px #000000",
+      borderColor: "black",
+      boxShadow: "8px 8px 0px 0px #000000",
       duration: 0.3,
       ease: "power2.out",
     });
@@ -114,38 +232,54 @@ const TeamMemberCard = ({ member, index }) => {
       ref={cardRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative bg-white border-4 border-black p-4 group cursor-pointer h-full"
+      className="relative bg-white border-4 border-black p-4 group cursor-pointer h-full transition-colors duration-300"
       style={{
-        boxShadow: "6px 6px 0px 0px #000000",
-        clipPath: "polygon(2% 0, 100% 0, 100% 98%, 98% 100%, 0 100%, 0 2%)",
+        boxShadow: "8px 8px 0px 0px #000000",
       }}
     >
       {/* Comic Corner Accent */}
       <div
-        className="absolute top-0 right-0 w-12 h-12 border-l-4 border-b-4 border-black z-10"
-        style={{ backgroundColor: theme.secondary }}
-      />
+        className="absolute top-0 right-0 w-16 h-16 border-l-4 border-b-4 border-black z-10 transition-colors duration-300"
+        style={{ 
+          backgroundColor: theme.secondary,
+          boxShadow: "inset 0 0 0 2px white"
+         }}
+      >
+        <div
+          className="absolute top-2 right-2 font-black text-xs"
+          style={{
+            color: ["black-widow", "wolverine", "hawkeye", "scarlet-witch", "captain-america", "iron-man", "black-panther", "deadpool"].includes(theme.name) ? "white" : "black",
+          }}
+        >
+          #{index + 1}
+        </div>
+      </div>
 
       {/* Image Container */}
-      <div className="relative aspect-square mb-4 border-4 border-black overflow-hidden bg-gray-900">
+      <div className="relative aspect-square mb-4 border-4 border-black overflow-hidden bg-gray-900 transition-colors duration-300">
         <div
-          className="absolute inset-0 halftone-pattern opacity-30"
+          className="absolute inset-0 halftone-pattern opacity-40 mix-blend-overlay"
           style={{ "--color-marvel-red": theme.primary }}
         />
         <img
           src={member.image}
           alt={member.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-hover:rotate-2"
         />
         {/* Comic Speed Lines Overlay on Hover */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-40 speed-lines transition-opacity duration-300 pointer-events-none" />
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-60 speed-lines transition-opacity duration-300 pointer-events-none" />
 
         {/* Alias Badge */}
         <div
-          className="absolute bottom-0 left-0 right-0 py-1 px-2 border-t-4 border-black text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
+          className="absolute bottom-0 left-0 right-0 py-2 px-2 border-t-4 border-black text-center transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"
           style={{ backgroundColor: theme.secondary }}
         >
-          <span className="text-xs font-black uppercase tracking-widest text-black">
+          <span 
+            className="text-xs sm:text-sm font-black uppercase tracking-widest drop-shadow-md"
+            style={{
+                color: ["black-widow", "wolverine", "hawkeye", "scarlet-witch", "captain-america", "iron-man", "black-panther", "deadpool"].includes(theme.name) ? "white" : "black",
+            }}
+          >
             {theme.alias}
           </span>
         </div>
@@ -155,28 +289,35 @@ const TeamMemberCard = ({ member, index }) => {
       <div className="relative z-10">
         <div className="flex items-start justify-between mb-2">
           <h3
-            className="text-2xl font-black italic uppercase leading-none"
+            className="text-2xl sm:text-3xl font-black italic uppercase leading-none wrap-break-word w-full"
             style={{
               color: "black",
-              textShadow: `2px 2px 0px ${theme.secondary}`,
+              textShadow: `1px 1px 0px ${theme.secondary}`,
             }}
           >
             {member.name}
           </h3>
-          <Icon className="w-6 h-6" style={{ color: theme.primary }} />
         </div>
-
-        <div
-          className="inline-block px-3 py-1 mb-4 border-2 border-black transform -skew-x-12"
-          style={{ backgroundColor: theme.primary }}
-        >
-          <span className="block transform skew-x-12 text-white font-bold text-xs uppercase tracking-wider">
-            {member.role}
-          </span>
+        
+        <div className="flex items-center gap-2 mb-4">
+             <Icon className="w-6 h-6 border-2 border-black rounded-full p-1 bg-white" style={{ color: theme.primary }} />
+             <div
+            className="inline-block px-3 py-1 border-2 border-black transform -skew-x-12"
+            style={{ backgroundColor: theme.secondary }}
+            >
+            <span 
+              className="block transform skew-x-12 font-bold text-xs uppercase tracking-wider"
+              style={{
+                color: ["black-widow", "wolverine", "hawkeye", "scarlet-witch", "captain-america", "iron-man", "black-panther", "deadpool"].includes(theme.name) ? "white" : "black",
+              }}
+            >
+                {member.role}
+            </span>
+            </div>
         </div>
 
         {/* Social Links */}
-        <div className="flex gap-3 mt-4 pt-4 border-t-2 border-dashed border-gray-300">
+        <div className="flex gap-3 mt-4 pt-4 border-t-4 border-dotted border-black">
           {[
             { Icon: Linkedin, href: "#" },
             { Icon: Twitter, href: "#" },
@@ -185,9 +326,20 @@ const TeamMemberCard = ({ member, index }) => {
             <a
               key={i}
               href={social.href}
-              className="w-8 h-8 flex items-center justify-center border-2 border-black bg-white hover:-translate-y-1 hover:shadow-[3px_3px_0px_#000] transition-all duration-200"
+              className="w-10 h-10 flex items-center justify-center border-2 border-black bg-white hover:-translate-y-1 hover:shadow-[4px_4px_0px_#000] transition-all duration-200 group-social"
+              style={{
+                "--hover-bg": theme.secondary,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = theme.secondary;
+                // e.currentTarget.style.color = "white"; // Optional: if text contrast needs change
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "white";
+                // e.currentTarget.style.color = "black";
+              }}
             >
-              <social.Icon className="w-4 h-4 text-black" />
+              <social.Icon className="w-5 h-5 text-black" />
             </a>
           ))}
         </div>
@@ -198,41 +350,41 @@ const TeamMemberCard = ({ member, index }) => {
 
 const TeamPage = () => {
   const [loading, setLoading] = useState(true);
+  const [activeBg, setActiveBg] = useState(null);
   const containerRef = useRef(null);
 
   const teamMembers = [
-    { name: "Kaif Khurshid", role: "Lead Organizer", image: heroIron },
-    { name: "Ishan Roy", role: "Tech Lead", image: heroCap },
-    { name: "Manish Nanda", role: "Design Head", image: heroHulk },
-    { name: "Simran Osta", role: "Marketing Lead", image: heroThor },
-    { name: "Suraj Maharana", role: "Logistics", image: heroPanther },
-    { name: "Rhea Bachheti", role: "Sponsorships", image: heroPanther }, // Using Panther as substitute
+    { name: "Kaif Khurshid", role: "Lead Organizer", image: portraitIron },
+    { name: "Ishan Roy", role: "Tech Lead", image: portraitCap },
+    { name: "Manish Nanda", role: "Design Head", image: portraitHulk },
+    { name: "Simran Osta", role: "Marketing Lead", image: portraitThor },
+    { name: "Suraj Maharana", role: "Logistics", image: portraitPanther },
+    { name: "Rhea Bachheti", role: "Sponsorships", image: portraitWidow },
   ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
     // Simulating load for animation sync
-    setTimeout(() => setLoading(false), 500);
+    setTimeout(() => setLoading(false), 800);
   }, []);
 
   useEffect(() => {
     if (!loading && containerRef.current) {
       const ctx = gsap.context(() => {
         gsap.from(".team-title-char", {
-          y: 100,
+          y: 150,
           opacity: 0,
           rotateX: -90,
           stagger: 0.05,
-          duration: 0.8,
-          ease: "back.out(1.7)",
+          duration: 1,
+          ease: "elastic.out(1, 0.5)",
         });
 
         gsap.from(".team-card", {
-          y: 100,
+          y: 200,
           opacity: 0,
-          scale: 0.8,
-          stagger: 0.1,
+          scale: 0.5,
+          stagger: 0.15,
           duration: 0.8,
           delay: 0.5,
           ease: "back.out(1.2)",
@@ -245,37 +397,47 @@ const TeamPage = () => {
   return (
     <div
       ref={containerRef}
-      className="min-h-screen relative overflow-hidden pt-40 pb-20 bg-gray-100"
+      className="min-h-screen relative pt-32 pb-20 overflow-x-hidden bg-black"
     >
-      {/* Comic Background Patterns */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* Dynamic Background */}
+      <div className="fixed inset-0 z-0">
+         {/* Base Layer (Avengers) - Fixed Positioning */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-fixed opacity-15"
-          style={{ backgroundImage: `url(${avengersBg})` }}
+            className={`absolute inset-0 bg-cover bg-top transition-opacity duration-500 ease-in-out ${activeBg ? "opacity-0" : "opacity-100"}`}
+            style={{ 
+                backgroundImage: `url(${bgAvengers})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'top center'
+            }}
         />
-        <div className="absolute inset-0 bg-white/70 backdrop-blur-sm" />
-        {/* Extra Comic Overlays */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-yellow-400 opacity-5 clip-path-notch" />
-        <div className="absolute bottom-0 left-0 w-1/3 h-2/3 bg-blue-500 opacity-5 rounded-full blur-3xl" />
-        <div className="absolute inset-0 halftone-pattern opacity-10" />
+        {/* Active Layer (Individual) */}
+        <div
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-300 ease-in-out ${activeBg ? "opacity-100" : "opacity-0"}`}
+            style={{ backgroundImage: `url(${activeBg})` }}
+        />
+        
+        {/* Comic Overlays */}
+        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 halftone-pattern opacity-10 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-linear-to-l from-black/60 to-transparent pointer-events-none" />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10 mt-12">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 sm:mb-16 gap-6 sm:gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
           <div>
-            <div className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 border-2 sm:border-3 border-black bg-red-600 shadow-[3px_3px_0px_#000] sm:shadow-[4px_4px_0px_#000] mb-3 sm:mb-4 transform -rotate-2">
-              <span className="text-white font-black uppercase tracking-widest text-xs sm:text-sm">
-                Synchronize 4.0
+            <div className="inline-block px-6 py-2 border-4 border-black bg-yellow-400 shadow-[6px_6px_0px_#000] mb-6 transform -rotate-3 hover:rotate-0 transition-transform">
+              <span className="text-black font-black uppercase tracking-widest text-sm sm:text-base">
+                Synchronize 4.0 // Tech Fest
               </span>
             </div>
-            <h1 className="text-5xl sm:text-6xl md:text-8xl font-black italic uppercase leading-none flex flex-wrap gap-x-2 sm:gap-x-4">
+            <h1 className="text-6xl sm:text-7xl md:text-9xl font-black italic uppercase leading-none flex flex-wrap gap-x-4 mix-blend-hard-light text-white drop-shadow-[4px_4px_0px_#000]">
               {"MEET THE SQUAD".split(" ").map((word, i) => (
                 <span key={i} className="flex">
                   {word.split("").map((char, j) => (
                     <span
                       key={j}
-                      className="team-title-char inline-block text-transparent bg-clip-text bg-linear-to-b from-black to-gray-800 drop-shadow-[2px_2px_0px_rgba(200,200,200,1)] sm:drop-shadow-[4px_4px_0px_rgba(200,200,200,1)]"
+                      className="team-title-char inline-block hover:text-yellow-400 transition-colors duration-200"
                     >
                       {char}
                     </span>
@@ -283,40 +445,48 @@ const TeamPage = () => {
                 </span>
               ))}
             </h1>
-            <p className="mt-4 sm:mt-6 text-lg sm:text-xl font-bold text-gray-800 max-w-2xl bg-white/90 shadow-[4px_4px_0px_#000] p-4 border-2 border-black -skew-x-6">
+            <div className="mt-8 p-6 bg-white border-4 border-black shadow-[8px_8px_0px_#ED1D24] max-w-2xl transform skew-x-6 hover:skew-x-0 transition-transform">
+               <p className="text-xl sm:text-2xl font-bold text-black uppercase italic">
               "Heroes aren't born. They're built, one commit at a time."
-            </p>
+                </p>
+            </div>
+            
           </div>
 
           <Link
             to="/"
-            className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-black text-white font-black text-lg sm:text-xl uppercase tracking-wider hover:-translate-y-1 hover:shadow-[6px_6px_0px_#ED1D24] transition-all duration-200 border-2 border-transparent hover:border-black self-start md:self-auto"
+            className="group relative px-8 py-5 bg-red-600 text-white font-black text-xl uppercase tracking-wider hover:-translate-y-1 hover:shadow-[8px_8px_0px_#000] transition-all duration-200 border-4 border-black self-start md:self-auto"
           >
-            <span className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5 group-hover:-translate-x-1 transition-transform" />
+            <span className="flex items-center gap-2 relative z-10">
+              <ArrowLeft className="w-6 h-6 group-hover:-translate-x-2 transition-transform" />
               HQ Return
             </span>
           </Link>
         </div>
 
         {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 pb-12">
           {teamMembers.map((member, index) => (
             <div key={index} className="team-card h-full">
-              <TeamMemberCard member={member} index={index} />
+              <TeamMemberCard member={member} index={index} setActiveBg={setActiveBg} />
             </div>
           ))}
         </div>
 
         {/* Comic Footer Decoration */}
-        <div className="mt-12 text-center">
-          <div className="inline-block px-12 py-6 bg-yellow-400 border-4 border-black shadow-[8px_8px_0px_#000] transform rotate-1 hover:scale-105 transition-transform">
-            <span className="text-2xl font-black uppercase italic tracking-wider">
+        <div className="mt-20 text-center relative">
+            <div className="absolute top-1/2 left-0 w-full h-2 bg-black -z-10 transform -translate-y-1/2"></div>
+          <div className="inline-block px-12 py-6 bg-blue-600 border-4 border-black shadow-[10px_10px_0px_#000] transform rotate-2 hover:scale-110 transition-transform cursor-help">
+            <span className="text-2xl font-black uppercase italic tracking-wider text-white">
               MORE HEROES INCOMING...
             </span>
           </div>
         </div>
       </div>
+      
+      {/* Decorative Floating Elements */}
+      <div className="fixed bottom-10 left-10 w-24 h-24 bg-yellow-400 rounded-full border-4 border-black z-0 opacity-20 animate-bounce delay-700 hidden lg:block"></div>
+      <div className="fixed top-40 right-10 w-16 h-16 bg-red-600 rotate-45 border-4 border-black z-0 opacity-20 animate-pulse hidden lg:block"></div>
     </div>
   );
 };
