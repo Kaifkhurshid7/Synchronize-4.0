@@ -1,23 +1,23 @@
 @import "tailwindcss";
 
-@theme  :root {
-    --font-sans: "Rubik", sans-serif;
-    --font-display: "Montserrat", sans-serif;
-    
-    /* Vivid Avengers Palette */
-    --color-marvel-red: #ED1D24;
-    --color-iron-red: #D2161E;
-    --color-iron-gold: #FFD700;
-    --color-hulk-green: #4CAF50;
-    --color-hulk-light: #81C784;
-    --color-thor-blue: #00BCD4;
-    --color-thor-silver: #B0BEC5;
-    --color-cap-blue: #1976D2;
-    --color-panther-purple: #9C27B0;
-    --color-widow-black: #212121;
-    
-    --color-light-bg: #FFFFFF;
-    --color-comic-border: #000000;
+@theme: root{
+  --font-sans: "Rubik", sans-serif;
+  --font-display: "Montserrat", sans-serif;
+
+  /* Vivid Avengers Palette */
+  --color-marvel-red: #ed1d24;
+  --color-iron-red: #d2161e;
+  --color-iron-gold: #ffd700;
+  --color-hulk-green: #4caf50;
+  --color-hulk-light: #81c784;
+  --color-thor-blue: #00bcd4;
+  --color-thor-silver: #b0bec5;
+  --color-cap-blue: #1976d2;
+  --color-panther-purple: #9c27b0;
+  --color-widow-black: #212121;
+
+  --color-light-bg: #ffffff;
+  --color-comic-border: #000000;
 };
 
 @layer base {
@@ -32,7 +32,7 @@
     overflow-x: hidden;
     @apply antialiased;
   }
-  
+
   ::selection {
     background-color: var(--color-iron-gold);
     color: black;
@@ -162,7 +162,8 @@
   }
 
   @keyframes shimmer-text {
-    0%, 100% {
+    0%,
+    100% {
       background-position: 0% 50%;
     }
     50% {
@@ -171,7 +172,8 @@
   }
 
   @keyframes wave {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px) scale(1);
       opacity: 0.2;
     }
@@ -211,6 +213,58 @@
     background-size: 200% auto;
     animation: shimmer-text 4s ease-in-out infinite;
   }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin-reverse-slow {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+
+  @keyframes spin-super-fast {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 10s linear infinite;
+  }
+
+  .animate-spin-reverse-slow {
+    animation: spin-reverse-slow 15s linear infinite;
+  }
+
+  .animate-spin-super-fast {
+    animation: spin-super-fast 0.15s linear infinite;
+  }
+
+  @keyframes pulse-fast {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .animate-pulse-fast {
+    animation: pulse-fast 0.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
 }
 
 /* Prevent parent/body scroll on overscroll for inner container */
@@ -241,7 +295,10 @@ body.modal-open .navbar-main {
 }
 
 .halftone-pattern {
-  background-image: radial-gradient(var(--color-marvel-red) 1px, transparent 1px);
+  background-image: radial-gradient(
+    var(--color-marvel-red) 1px,
+    transparent 1px
+  );
   background-size: 20px 20px;
 }
 
@@ -261,10 +318,10 @@ body.modal-open .navbar-main {
 
 .clip-path-notch {
   clip-path: polygon(
-    0 0, 
-    100% 0, 
-    100% calc(100% - 20px), 
-    calc(100% - 20px) 100%, 
+    0 0,
+    100% 0,
+    100% calc(100% - 20px),
+    calc(100% - 20px) 100%,
     0 100%
   );
 }
@@ -272,32 +329,33 @@ body.modal-open .navbar-main {
 /* Comic Panel Styles */
 .comic-panel {
   border: 3px solid black;
-  box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
-  transition: all 0.2s cubic-bezier(0.1, 0.7, 1.0, 0.1);
+  box-shadow: 6px 6px 0px 0px rgba(0, 0, 0, 1);
+  transition: all 0.2s cubic-bezier(0.1, 0.7, 1, 0.1);
 }
 
 .comic-panel:hover {
   transform: translate(-3px, -3px);
-  box-shadow: 9px 9px 0px 0px rgba(0,0,0,1);
+  box-shadow: 9px 9px 0px 0px rgba(0, 0, 0, 1);
 }
 
 /* Wakanda/Black Panther Theme Styles */
 .wakanda-pattern {
-  background-image: 
-    radial-gradient(circle at 25% 25%, #9C27B0 2px, transparent 2px),
-    radial-gradient(circle at 75% 75%, #FFD700 1px, transparent 1px);
+  background-image: radial-gradient(
+      circle at 25% 25%,
+      #9c27b0 2px,
+      transparent 2px
+    ),
+    radial-gradient(circle at 75% 75%, #ffd700 1px, transparent 1px);
   background-size: 30px 30px, 20px 20px;
 }
 
 .vibranium-glow {
-  box-shadow: 
-    0 0 20px rgba(156, 39, 176, 0.5),
-    0 0 40px rgba(156, 39, 176, 0.3),
+  box-shadow: 0 0 20px rgba(156, 39, 176, 0.5), 0 0 40px rgba(156, 39, 176, 0.3),
     inset 0 0 20px rgba(156, 39, 176, 0.1);
 }
 
 .panther-text {
-  background: linear-gradient(45deg, #9C27B0, #FFD700, #9C27B0);
+  background: linear-gradient(45deg, #9c27b0, #ffd700, #9c27b0);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -306,7 +364,8 @@ body.modal-open .navbar-main {
 }
 
 @keyframes energy-pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.3;
     transform: scale(1);
   }
@@ -343,7 +402,7 @@ body.modal-open .navbar-main {
 }
 
 .comic-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -386,7 +445,7 @@ body.modal-open .navbar-main {
 }
 
 .speech-bubble::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -443,17 +502,22 @@ body.modal-open .navbar-main {
 /* Stark Tech Extras */
 .tech-grid {
   background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, rgba(0, 242, 255, 0.05) 1px, transparent 1px),
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 242, 255, 0.05) 1px,
+      transparent 1px
+    ),
     linear-gradient(to bottom, rgba(0, 242, 255, 0.05) 1px, transparent 1px);
 }
 
 .tech-border-glow {
-  box-shadow: 0 0 10px rgba(0, 242, 255, 0.5), inset 0 0 5px rgba(0, 242, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 242, 255, 0.5),
+    inset 0 0 5px rgba(0, 242, 255, 0.2);
 }
 
 .iron-man-glow {
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), inset 0 0 10px rgba(170, 5, 5, 0.2);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3),
+    inset 0 0 10px rgba(170, 5, 5, 0.2);
 }
 
 .hologram-scan {
@@ -470,35 +534,47 @@ body.modal-open .navbar-main {
 }
 
 @keyframes hologram-scan {
-  0% { transform: translateY(-50%); }
-  100% { transform: translateY(50%); }
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(50%);
+  }
 }
 
 .text-stroke-tech {
-  -webkit-text-stroke: 1px #00F2FF;
-  text-shadow: 0 0 5px #00F2FF;
+  -webkit-text-stroke: 1px #00f2ff;
+  text-shadow: 0 0 5px #00f2ff;
 }
-
 
 /* Spider-Verse Theme Utilities */
 .spidey-bg {
   background-color: #0a0a0a;
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(220, 38, 38, 0.15) 0%, transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 25%);
+  background-image: radial-gradient(
+      circle at 15% 50%,
+      rgba(220, 38, 38, 0.15) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(37, 99, 235, 0.15) 0%,
+      transparent 25%
+    );
 }
 
 .halftone-overlay {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 1px
+  );
   background-size: 20px 20px;
   mask-image: linear-gradient(to bottom, black, transparent);
 }
 
 .glitch-text {
   position: relative;
-  text-shadow: 
-    2px 2px 0px #FF0055, /* Spider-Gwen Pink/Red */
-    -2px -2px 0px #00F2FF; /* Cyber Blue */
+  text-shadow: 2px 2px 0px #ff0055,
+    /* Spider-Gwen Pink/Red */ -2px -2px 0px #00f2ff; /* Cyber Blue */
   animation: glitch-skew 3s infinite linear alternate-reverse;
 }
 
@@ -514,64 +590,119 @@ body.modal-open .navbar-main {
 }
 
 .glitch-text::before {
-  color: #FF0055;
+  color: #ff0055;
   clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
   transform: translate(-2px, -2px);
   animation: glitch-anim-1 2.5s infinite linear alternate-reverse;
 }
 
 .glitch-text::after {
-  color: #00F2FF;
+  color: #00f2ff;
   clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
   transform: translate(2px, 2px);
   animation: glitch-anim-2 3s infinite linear alternate-reverse;
 }
 
 @keyframes glitch-skew {
-  0% { transform: skew(0deg); }
-  20% { transform: skew(-2deg); }
-  40% { transform: skew(2deg); }
-  60% { transform: skew(0deg); }
-  80% { transform: skew(-1deg); }
-  100% { transform: skew(1deg); }
+  0% {
+    transform: skew(0deg);
+  }
+  20% {
+    transform: skew(-2deg);
+  }
+  40% {
+    transform: skew(2deg);
+  }
+  60% {
+    transform: skew(0deg);
+  }
+  80% {
+    transform: skew(-1deg);
+  }
+  100% {
+    transform: skew(1deg);
+  }
 }
 
 @keyframes glitch-anim-1 {
-  0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 2px); }
-  20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
-  40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
-  60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
-  80% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 2px); }
-  100% { clip-path: inset(30% 0 50% 0); transform: translate(2px, -2px); }
+  0% {
+    clip-path: inset(20% 0 80% 0);
+    transform: translate(-2px, 2px);
+  }
+  20% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(2px, -2px);
+  }
+  40% {
+    clip-path: inset(40% 0 50% 0);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(2px, -2px);
+  }
+  80% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-2px, 2px);
+  }
+  100% {
+    clip-path: inset(30% 0 50% 0);
+    transform: translate(2px, -2px);
+  }
 }
 
 @keyframes glitch-anim-2 {
-  0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -2px); }
-  20% { clip-path: inset(80% 0 10% 0); transform: translate(-2px, 2px); }
-  40% { clip-path: inset(30% 0 40% 0); transform: translate(2px, -2px); }
-  60% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 2px); }
-  80% { clip-path: inset(20% 0 50% 0); transform: translate(2px, -2px); }
-  100% { clip-path: inset(50% 0 30% 0); transform: translate(-2px, 2px); }
+  0% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, -2px);
+  }
+  20% {
+    clip-path: inset(80% 0 10% 0);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    clip-path: inset(30% 0 40% 0);
+    transform: translate(2px, -2px);
+  }
+  60% {
+    clip-path: inset(60% 0 20% 0);
+    transform: translate(-2px, 2px);
+  }
+  80% {
+    clip-path: inset(20% 0 50% 0);
+    transform: translate(2px, -2px);
+  }
+  100% {
+    clip-path: inset(50% 0 30% 0);
+    transform: translate(-2px, 2px);
+  }
 }
 
 .comic-card-border {
   clip-path: polygon(
-    2% 0%, 98% 0%, 
-    100% 2%, 100% 98%, 
-    98% 100%, 2% 100%, 
-    0% 98%, 0% 2%
+    2% 0%,
+    98% 0%,
+    100% 2%,
+    100% 98%,
+    98% 100%,
+    2% 100%,
+    0% 98%,
+    0% 2%
   );
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .comic-card-border:hover {
   clip-path: polygon(
-    0% 0%, 100% 0%, 
-    100% 0%, 100% 100%, 
-    100% 100%, 0% 100%, 
-    0% 100%, 0% 0%
+    0% 0%,
+    100% 0%,
+    100% 0%,
+    100% 100%,
+    100% 100%,
+    0% 100%,
+    0% 100%,
+    0% 0%
   );
   transform: scale(1.02) rotate(-1deg);
   box-shadow: 10px 10px 0px rgba(230, 36, 41, 0.8);
 }
-

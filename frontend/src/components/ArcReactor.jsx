@@ -16,28 +16,45 @@ const ArcReactor = ({ className }) => {
       <circle cx="50" cy="50" r="35" fill="#06b6d4" stroke="black" strokeWidth="2" className="animate-pulse drop-shadow-[0_0_10px_rgba(6,182,212,0.8)]" />
       
       {/* Mechanical Details (The Segments) - 10 segments */}
-      {[...Array(10)].map((_, i) => (
-        <path
-          key={i}
-          d="M 50 15 L 50 25"
-          stroke="black"
-          strokeWidth="3"
-          transform={`rotate(${i * 36} 50 50)`}
-        />
-      ))}
-      {[...Array(10)].map((_, i) => (
-        <rect
-          key={i}
-          x="46"
-          y="18"
-          width="8"
-          height="10"
-          fill="#1e293b"
-          stroke="black"
-          strokeWidth="1"
-          transform={`rotate(${i * 36} 50 50)`}
-        />
-      ))}
+      {/* Rotating Mechanical Assembly */}
+      <g className="animate-spin-slow" style={{ transformOrigin: '50px 50px' }}>
+        {[...Array(10)].map((_, i) => (
+          <path
+            key={`p-${i}`}
+            d="M 50 15 L 50 25"
+            stroke="black"
+            strokeWidth="3"
+            transform={`rotate(${i * 36} 50 50)`}
+          />
+        ))}
+        {[...Array(10)].map((_, i) => (
+          <rect
+            key={`r-${i}`}
+            x="46"
+            y="18"
+            width="8"
+            height="10"
+            fill="#1e293b"
+            stroke="black"
+            strokeWidth="1"
+            transform={`rotate(${i * 36} 50 50)`}
+          />
+        ))}
+      </g>
+
+      {/* Counter-Rotating Energy Ring */}
+      <circle 
+        cx="50" 
+        cy="50" 
+        r="38" 
+        fill="none" 
+        stroke="#06b6d4" 
+        strokeWidth="1" 
+        strokeDasharray="5, 5"
+        opacity="0.6"
+        className="animate-spin-reverse-slow"
+        style={{ transformOrigin: '50px 50px' }}
+      />
 
       {/* Inner Core Ring */}
       <circle cx="50" cy="50" r="18" fill="white" stroke="black" strokeWidth="2" />
