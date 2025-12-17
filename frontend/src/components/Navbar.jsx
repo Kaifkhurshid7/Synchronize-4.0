@@ -9,6 +9,7 @@ import thorImg from '../assets/thor.png';
 import captainAmericaImg from '../assets/captain_america.png';
 import blackPantherImg from '../assets/black_panther.png';
 import blackWidowImg from '../assets/black_widow.png';
+import ximLogo from '../assets/xim-logo.png';
 import ArcReactor from './ArcReactor';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -208,8 +209,10 @@ const Navbar = () => {
             to="/" 
             onClick={() => setIsOpen(false)} 
             className={`relative group cursor-pointer bg-white px-6 py-3 transform -skew-x-6 transition-all duration-300 ${stickerClass} hover:scale-105 hover:rotate-2 hover:shadow-[8px_8px_0px_var(--marvel-red)]! hover:-translate-y-1`}
+            id="home-nav"
           >
             <div className="flex items-center gap-2 transform skew-x-6">
+                <img src={ximLogo} alt="XIM Logo" className="w-8 h-8 sm:w-10 sm:h-10 object-contain" />
                 <div className="flex flex-col items-center">
                     <span className="text-xl sm:text-3xl font-display font-black italic leading-none text-black tracking-tighter transition-all duration-300 group-hover:tracking-widest" style={{ textShadow: '2px 2px 0px #ED1D24' }}>SYNCHRONIZE</span>
                     <span className="text-xs font-black tracking-[0.5em] bg-black text-white px-2 py-0.5 mt-[-4px] -rotate-2 group-hover:rotate-0 transition-transform duration-300">4.0 EDITION</span>
