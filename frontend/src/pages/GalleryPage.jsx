@@ -161,7 +161,7 @@ const GalleryPage = () => {
               className={`text-6xl md:text-8xl font-black uppercase tracking-tighter italic transform -skew-x-12 pr-3.5 ${
                 theme === "spiderman"
                   ? "text-marvel-red drop-shadow-[4px_4px_0px_#000]"
-                  : "text-transparent bg-clip-text bg-gradient-to-br from-gray-200 to-gray-600 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
+                  : "text-transparent bg-clip-text bg-linear-to-br from-gray-200 to-gray-600 drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]"
               } transition-all duration-500`}
             >
               {theme === "spiderman" ? "Spider-Verse" : "Symbiote-City"}
@@ -212,7 +212,7 @@ const GalleryPage = () => {
               }}
             >
               {/* Image Container */}
-              <div className="relative overflow-hidden aspect-[2/3] border-2 border-black">
+              <div className="relative overflow-hidden aspect-2/3 border-2 border-black">
                 <div className={`absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110`} style={{ backgroundImage: `url(${item.image})` }} />
                 
                 {/* Halftone / Glitch Overlay */}
@@ -242,7 +242,7 @@ const GalleryPage = () => {
       {selectedImage && (
         <div 
           ref={overlayRef}
-          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/90 p-4"
+          className="fixed inset-0 z-200 flex items-center justify-center bg-black/90 p-4"
           onClick={closeOverlay}
         >
           <div 
