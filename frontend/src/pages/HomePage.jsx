@@ -106,10 +106,6 @@ const HomePage = () => {
       // About -> Events
       createSectionTransition(aboutRef, eventsRef);
 
-      // Events -> Timeline
-      // SPECIAL HANDLING: Events section has internal pinning for cards.
-      // We cannot use the standard pinning/scaling transition here because nested pins/transforms break the internal card logic.
-      // Instead, we just let Timeline slide over normally, or apply a gentle fade without pinning/scaling.
       if (eventsRef.current && timelineRef.current) {
          gsap.to(eventsRef.current, {
             opacity: 0,
@@ -122,16 +118,6 @@ const HomePage = () => {
             }
          });
       }
-
-      // Timeline -> Sponsors
-      // createSectionTransition(timelineRef, sponsorsRef); // REMOVED for normal scrolling
-
-      // Sponsors -> Contact
-      // createSectionTransition(sponsorsRef, contactRef); // REMOVED for normal scrolling
-
-      // About Section Specific Animation (Parallax/Fade) - Keeping internal animation
-      // (Internal animation logic is handled inside About.jsx)
-
 
     }, mainRef);
 
