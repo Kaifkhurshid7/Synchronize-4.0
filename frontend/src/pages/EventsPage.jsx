@@ -12,44 +12,18 @@ import thorImg from '../assets/thor.png';
 import hulkImg from '../assets/hulk.png';
 import blackPantherImg from '../assets/black_panther.png';
 import capAmericaImg from '../assets/captain_america.png';
+import blackWidowImg from '../assets/black_widow.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const eventsData = {
-  flagship: [
-    {
-      id: 1,
-      title: "Tech Summit 2025",
-      category: "Flagship",
-      description: "The biggest tech event of the year featuring keynote speakers, workshops, and networking opportunities with industry leaders.",
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800",
-      date: "March 15-17, 2025",
-      day: [1, 2, 3],
-      venue: "Main Auditorium",
-      prize: "₹1,00,000",
-      registrationLink: "https://forms.google.com/placeholder",
-      poc: { name: "Rahul Sharma", email: "rahul.sharma@techfest.com" }
-    },
-    {
-      id: 2,
-      title: "Innovation Challenge",
-      category: "Flagship",
-      description: "Present your innovative ideas and prototypes to a panel of judges. Best innovation wins funding and mentorship.",
-      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800",
-      date: "March 16, 2025",
-      day: 2,
-      venue: "Innovation Hub",
-      prize: "₹75,000",
-      registrationLink: "https://forms.google.com/placeholder",
-      poc: { name: "Priya Patel", email: "priya.patel@techfest.com" }
-    }
-  ],
-  coding: [
+
+  technical: [
     {
       id: 3,
       title: "Hackathon 2025",
-      category: "Coding",
-      description: "24-hour coding marathon where teams build innovative solutions to real-world problems. Mentorship and resources provided.",
+      category: "Technical",
+      description: "24-hour technical marathon where teams build innovative solutions to real-world problems. Mentorship and resources provided.",
       image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       date: "March 15-16, 2025",
       day: [1, 2],
@@ -61,7 +35,7 @@ const eventsData = {
     {
       id: 4,
       title: "Code Relay",
-      category: "Coding",
+      category: "Technical",
       description: "Team-based competitive programming event. Solve algorithmic challenges in a relay format against the clock.",
       image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800",
       date: "March 17, 2025",
@@ -74,7 +48,7 @@ const eventsData = {
     {
       id: 5,
       title: "Web Dev Workshop",
-      category: "Coding",
+      category: "Technical",
       description: "Learn modern web development techniques from industry experts. Build a full-stack application from scratch.",
       image: "https://images.unsplash.com/photo-1593720213428-28a5b9e94613?auto=format&fit=crop&q=80&w=800",
       date: "March 16, 2025",
@@ -126,11 +100,11 @@ const eventsData = {
       poc: { name: "Rohan Gupta", email: "rohan.gupta@techfest.com" }
     }
   ],
-  gaming: [
+  esports: [
     {
       id: 9,
-      title: "Esports Tournament",
-      category: "Gaming",
+      title: "Valorant Tournament",
+      category: "Esports",
       description: "Compete in popular esports titles including Valorant, CS:GO, and more. Solo and team events available.",
       image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800",
       date: "March 15-17, 2025",
@@ -142,8 +116,8 @@ const eventsData = {
     },
     {
       id: 10,
-      title: "Mobile Gaming Championship",
-      category: "Gaming",
+      title: "BGMI Championship",
+      category: "Esports",
       description: "Battle it out in mobile gaming tournaments featuring BGMI, COD Mobile, and Clash Royale.",
       image: "https://images.unsplash.com/photo-1556438064-2d7646166914?auto=format&fit=crop&q=80&w=800",
       date: "March 16, 2025",
@@ -154,33 +128,89 @@ const eventsData = {
       poc: { name: "Ishita Joshi", email: "ishita.joshi@techfest.com" }
     }
   ],
-  creative: [
+  cultural: [
     {
       id: 11,
-      title: "Design Derby",
-      category: "Creative",
-      description: "Showcase your design skills in UI/UX, graphic design, and digital art competitions.",
-      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=800",
+      title: "Battle of Bands",
+      category: "Cultural",
+      description: "Electrifying musical showdown where college bands compete for supremacy.",
+      image: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=800",
       date: "March 16, 2025",
       day: 2,
-      venue: "Design Studio",
+      venue: "Main Stage",
       prize: "₹35,000",
       registrationLink: "https://forms.google.com/placeholder",
       poc: { name: "Meera Kapoor", email: "meera.kapoor@techfest.com" }
     },
     {
       id: 12,
-      title: "Photography Contest",
-      category: "Creative",
-      description: "Capture the essence of technology and innovation through your lens. Multiple categories available.",
-      image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&q=80&w=800",
-      date: "March 15-17, 2025",
-      day: [1, 2, 3],
-      venue: "Campus Wide",
-      prize: "₹15,000",
+      title: "Fashion Show",
+      category: "Cultural",
+      description: "Walk the ramp and showcase the latest trends and creative designs.",
+      image: "https://images.unsplash.com/photo-1509631179647-b8b92ad0370b?auto=format&fit=crop&q=80&w=800",
+      date: "March 17, 2025",
+      day: 3,
+      venue: "Auditorium",
+      prize: "₹25,000",
       registrationLink: "https://forms.google.com/placeholder",
       poc: { name: "Siddharth Rao", email: "siddharth.rao@techfest.com" }
     }
+  ],
+  sports: [
+    {
+        id: 13,
+        title: "Futsal",
+        category: "Sports",
+        description: "Fast-paced 5v5 football tournament. Show off your skills and teamwork.",
+        image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&q=80&w=800",
+        date: "March 15-16, 2025",
+        day: [1, 2],
+        venue: "Sports Complex",
+        prize: "₹20,000",
+        registrationLink: "https://forms.google.com/placeholder",
+        poc: { name: "Amit Singh", email: "amit.singh@techfest.com" }
+    },
+    {
+        id: 14,
+        title: "Box Cricket",
+        category: "Sports",
+        description: "Intense indoor cricket action. Short boundaries, high excitement.",
+        image: "https://images.unsplash.com/photo-1531415074968-bc23644a8e81?auto=format&fit=crop&q=80&w=800",
+        date: "March 16, 2025",
+        day: 2,
+        venue: "Sports Ground",
+        prize: "₹15,000",
+        registrationLink: "https://forms.google.com/placeholder",
+        poc: { name: "Rajesh Kumar", email: "rajesh.kumar@techfest.com" }
+    }
+  ],
+  entrepreneurship: [
+      {
+        id: 15,
+        title: "Shark Tank",
+        category: "Entrepreneurship",
+        description: "Pitch your startup idea to a panel of investors and secure funding.",
+        image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800",
+        date: "March 17, 2025",
+        day: 3,
+        venue: "Conference Hall",
+        prize: "₹50,000 + Funding",
+        registrationLink: "https://forms.google.com/placeholder",
+        poc: { name: "Anjali Gupta", email: "anjali.gupta@techfest.com" }
+      },
+      {
+        id: 16,
+        title: "Paper Presentation",
+        category: "Entrepreneurship",
+        description: "Present your research papers on cutting-edge technologies and business models.",
+        image: "https://images.unsplash.com/photo-1544531696-fa26a312bb7a?auto=format&fit=crop&q=80&w=800",
+        date: "March 16, 2025",
+        day: 2,
+        venue: "Seminar Room",
+        prize: "₹10,000",
+        registrationLink: "https://forms.google.com/placeholder",
+        poc: { name: "Dr. Vikram", email: "vikram@techfest.com" }
+      }
   ]
 };
 
@@ -199,23 +229,10 @@ const categories = [
       gradient: "from-blue-600 to-red-600"
     }
   },
+
   { 
-    id: 'flagship', 
-    name: 'Flagship',
-    character: "Iron Man",
-    bgImage: ironManImg,
-    theme: {
-      bg: 'bg-gradient-to-br from-red-600 via-yellow-500 to-yellow-200',
-      border: 'border-red-900',
-      accent: 'text-yellow-400',
-      shadow: 'shadow-red-900/50',
-      icon: '⚡',
-      gradient: "from-red-600 to-yellow-500"
-    }
-  },
-  { 
-    id: 'coding', 
-    name: 'Coding',
+    id: 'technical', 
+    name: 'Technical',
     character: "Spider-Man",
     bgImage: spiderManImg,
     theme: {
@@ -242,8 +259,8 @@ const categories = [
     }
   },
   { 
-    id: 'gaming', 
-    name: 'Gaming',
+    id: 'esports', 
+    name: 'Esports',
     character: "Hulk",
     bgImage: hulkImg,
     theme: {
@@ -256,8 +273,8 @@ const categories = [
     }
   },
   { 
-    id: 'creative', 
-    name: 'Creative',
+    id: 'cultural', 
+    name: 'Cultural',
     character: "Black Panther",
     bgImage: blackPantherImg,
     theme: {
@@ -265,8 +282,36 @@ const categories = [
       border: 'border-purple-900',
       accent: 'text-purple-400',
       shadow: 'shadow-purple-900/50',
-      icon: '🎨',
+      icon: '🎭',
       gradient: "from-purple-900 to-black"
+    }
+  },
+  { 
+    id: 'sports', 
+    name: 'Sports',
+    character: "Black Widow",
+    bgImage: blackWidowImg,
+    theme: {
+      bg: 'bg-gradient-to-br from-red-800 via-black to-gray-800',
+      border: 'border-red-900',
+      accent: 'text-red-500',
+      shadow: 'shadow-red-900/50',
+      icon: '⚽',
+      gradient: "from-red-800 to-black"
+    }
+  },
+   { 
+    id: 'entrepreneurship', 
+    name: 'Entrepreneurship',
+    character: "Iron Man",
+    bgImage: ironManImg,
+    theme: {
+      bg: 'bg-gradient-to-br from-yellow-600 via-orange-500 to-red-600',
+      border: 'border-yellow-900',
+      accent: 'text-yellow-400',
+      shadow: 'shadow-yellow-900/50',
+      icon: '💼',
+      gradient: "from-yellow-600 to-red-600"
     }
   }
 ];

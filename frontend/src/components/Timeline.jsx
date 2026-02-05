@@ -40,10 +40,10 @@ const MagicCircle = forwardRef(({ className, style }, ref) => (
 const scheduleData = {
   day1: [
     { time: "09:00 AM", title: "The Awakening", description: "Inauguration and Keynote Speech" },
-    { time: "10:30 AM", title: "Multiverse Hack", description: "24-hour coding marathon starts" },
+    { time: "10:30 AM", title: "Multiverse Hack", description: "24-hour technical marathon starts" },
     { time: "01:00 PM", title: "Sanctum Feast", description: "Networking and Refreshments" },
     { time: "02:30 PM", title: "Ancient Wisdom", description: "Guest lecture by Industry Expert" },
-    { time: "05:00 PM", title: "Astral Gaming", description: "Valorant and FIFA showdown" },
+    { time: "05:00 PM", title: "Astral Esports", description: "Valorant and FIFA showdown" },
     { time: "07:00 PM", title: "Sorcerer's Sup", description: "Meet sponsors and mentors" },
   ],
   day2: [
@@ -51,7 +51,7 @@ const scheduleData = {
     { time: "09:30 AM", title: "Mystic Arts: AI/ML", description: "Hands-on machine learning workshop" },
     { time: "12:00 PM", title: "Construct Wars", description: "Robot combat competition begins" },
     { time: "02:00 PM", title: "Dimension Break", description: "Food and relaxation" },
-    { time: "03:30 PM", title: "Mirror Dimension", description: "UI/UX design competition" },
+    { time: "03:30 PM", title: "Stark Expo Pitch", description: "Shark Tank style business pitch" },
     { time: "06:00 PM", title: "Kamar-Taj Night", description: "Music, dance, and entertainment" },
   ],
   day3: [

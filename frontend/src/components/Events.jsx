@@ -9,9 +9,9 @@ gsap.registerPlugin(ScrollTrigger);
 const eventsData = [
   { 
     title: "Hackathon", 
-    category: "Coding", 
+    category: "Technical", 
     image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    description: "Join us for an intense 24-hour coding marathon where innovation meets creativity. Build groundbreaking solutions to real-world problems.",
+    description: "Join us for an intense 24-hour technical marathon where innovation meets creativity. Build groundbreaking solutions to real-world problems.",
     date: "March 15-16, 2024",
     day: [1, 2],
     venue: "Tech Hub, Main Campus",
@@ -33,9 +33,9 @@ const eventsData = [
   },
   { 
     title: "Code Relay", 
-    category: "Coding", 
+    category: "Technical", 
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600",
-    description: "A team-based coding competition where speed and accuracy matter. Pass the baton and solve challenges together.",
+    description: "A team-based technical competition where speed and accuracy matter. Pass the baton and solve challenges together.",
     date: "March 18, 2024",
     day: 3,
     venue: "Computer Lab A",
@@ -44,7 +44,7 @@ const eventsData = [
     poc: { name: "Mike Johnson", email: "mike@xim.edu.in" }
   },
   { 
-    title: "Gaming", 
+    title: "Esports Arena", 
     category: "Esports", 
     image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=600",
     description: "Compete in popular esports titles and prove your gaming prowess. Multiple tournaments across different games.",
@@ -56,13 +56,13 @@ const eventsData = [
     poc: { name: "Sarah Williams", email: "sarah@xim.edu.in" }
   },
   { 
-    title: "Design Derby", 
-    category: "Creative", 
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&q=80&w=600",
-    description: "Showcase your creative design skills in UI/UX, graphic design, and digital art competitions.",
+    title: "Battle of Bands", 
+    category: "Cultural", 
+    image: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=600",
+    description: "Electrifying musical showdown where college bands compete for supremacy. Rock the stage!",
     date: "March 21, 2024",
     day: 2,
-    venue: "Design Studio",
+    venue: "Main Stage",
     prize: "₹35,000",
     registrationLink: "https://forms.google.com/placeholder",
     poc: { name: "Alex Brown", email: "alex@xim.edu.in" }
