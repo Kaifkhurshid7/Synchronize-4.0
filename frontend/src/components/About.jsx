@@ -124,7 +124,7 @@ const About = () => {
           scale: 1,
           opacity: 1,
           rotationY: 0,
-          duration: 0.6, // Faster (was 1)
+          duration: 0.4, // Faster (was 0.6)
           ease: "power3.out"
         }
       )
@@ -135,11 +135,11 @@ const About = () => {
           y: 0,
           opacity: 1,
           rotationX: 0,
-          stagger: 0.1, // Faster stagger (was 0.2)
-          duration: 0.5, // Faster (was 0.8)
+          stagger: 0.05, // Faster stagger (was 0.1)
+          duration: 0.3, // Faster (was 0.5)
           ease: "back.out(1.7)"
         },
-        "-=0.3"
+        "-=0.2"
       )
       // Panels with dynamic stagger
       .fromTo(".about-panel", 
@@ -155,13 +155,13 @@ const About = () => {
           scale: 1,
           rotation: 0,
           stagger: {
-            amount: 0.3, // Much faster stagger (was 0.6)
+            amount: 0.1, // Much faster stagger (was 0.3)
             from: "random"
           },
-          duration: 0.5, // Faster (was 0.7)
+          duration: 0.4, // Faster (was 0.5)
           ease: "back.out(1.7)"
         },
-        "-=0.2"
+        "-=0.1"
       );
     });
 

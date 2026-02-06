@@ -197,8 +197,17 @@ const Hero = () => {
       <div className="absolute inset-0 z-20 flex flex-col justify-center items-start px-6 sm:px-12 md:px-20 lg:px-32 pointer-events-none pt-20 sm:pt-0 lg:pt-26">
         
         {/* Floating Tag */}
-        <div ref={tagRef} className="mb-4 bg-white border-2 border-black shadow-[4px_4px_0px_#000] px-3 py-1 sm:px-4 sm:py-1 -rotate-2 inline-block opacity-0 transform-gpu">
-            <span className="font-display font-black text-[#AA0505] tracking-widest text-[10px] sm:text-xs md:text-sm">FIRST MARVEL EDITION</span>
+        {/* Floating Tags Container */}
+        <div ref={tagRef} className="mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4 items-start sm:items-center opacity-0 transform-gpu">
+            {/* Edition Tag */}
+            <div className="bg-white border-2 border-black shadow-[4px_4px_0px_#000] px-3 py-1 sm:px-4 sm:py-1 -rotate-2">
+                <span className="font-display font-black text-[#AA0505] tracking-widest text-[10px] sm:text-xs md:text-sm">FIRST MARVEL EDITION</span>
+            </div>
+            
+            {/* Date Tag */}
+            <div className="bg-[#AA0505] border-2 border-black shadow-[4px_4px_0px_#000] px-3 py-1 sm:px-4 sm:py-1 rotate-1">
+                 <span className="font-display font-black text-white tracking-widest text-[10px] sm:text-xs md:text-sm">FEB 26 - 28</span>
+            </div>
         </div>
 
         <div ref={textRef} className="flex flex-col relative w-full">

@@ -204,6 +204,11 @@ const Timeline = () => {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-16 relative">
+             <div className="mb-2">
+                <span className="inline-block px-3 py-1 border-2 border-[#10B981] bg-emerald-900/30 text-[#10B981] font-mono font-bold tracking-[0.2em] text-xs sm:text-sm md:text-base rounded transform -skew-x-12 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
+                    FEB 26 - 28
+                </span>
+             </div>
              <h2 className="text-5xl sm:text-6xl md:text-8xl font-display font-black italic text-transparent bg-clip-text bg-linear-to-b from-green-400 to-emerald-700 drop-shadow-[4px_4px_0px_#064E3B] mb-4 tracking-tighter" style={{ WebkitTextStroke: '2px black' }}>
                SCHEDULE
              </h2>
