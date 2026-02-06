@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Mail, MapPin, Github, Instagram, Linkedin, Send } from 'lucide-react';
+import { Mail, MapPin, Instagram, Linkedin, Send, Youtube } from 'lucide-react';
 import toast from 'react-hot-toast';
 import api from '../utils/api';
 import ContactBg from '../assets/backgrounds/contact-bg.png';
@@ -126,18 +126,19 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-wider italic">Location</h3>
-                    <p className="text-gray-400 font-mono mt-0.5 sm:mt-1 text-sm sm:text-base">XIM University, Odisha</p>
+                    <p className="text-gray-400 font-mono mt-0.5 sm:mt-1 text-sm sm:text-base">New Campus XIM University Xavier City, <br />
+                      Plot No.: 12 (A), Nijigada, Kurki Harirajpur P.O - 752050, <br />Dist - Puri, Odisha</p>
                   </div>
                 </div>
              </div>
 
              <div className="flex gap-4 sm:gap-6 mt-6 sm:mt-8 justify-center md:justify-start">
                {[
-                 { Icon: Github, color: "hover:text-black hover:bg-white" },
-                 { Icon: Instagram, color: "hover:text-white hover:bg-pink-600" },
-                 { Icon: Linkedin, color: "hover:text-white hover:bg-blue-600" }
-               ].map(({ Icon, color }, i) => (
-                 <a key={i} href="#" className={`w-10 h-10 sm:w-14 sm:h-14 bg-zinc-900 border-2 border-gray-700 flex items-center justify-center text-gray-400 ${color} transition-all transform hover:scale-110 shadow-[3px_3px_0_#000] sm:shadow-[4px_4px_0_#000]`}>
+                 { Icon: Instagram, color: "hover:text-white hover:bg-pink-600", link: "https://www.instagram.com/synchronize_xim?igsh=ZjF6NXpwbG82ZDgy" },
+                 { Icon: Linkedin, color: "hover:text-white hover:bg-blue-600", link: "https://www.linkedin.com/company/xim-university/" },
+                 { Icon: Youtube, color: "hover:text-white hover:bg-red-600", link: "https://youtube.com/@synchronizexim?si=PXis2RtPVcj0mN7g" }
+               ].map(({ Icon, color, link }, i) => (
+                 <a key={i} href={link} target="_blank" rel="noopener noreferrer" className={`w-10 h-10 sm:w-14 sm:h-14 bg-zinc-900 border-2 border-gray-700 flex items-center justify-center text-gray-400 ${color} transition-all transform hover:scale-110 shadow-[3px_3px_0_#000] sm:shadow-[4px_4px_0_#000]`}>
                    <Icon className="w-5 h-5 sm:w-8 sm:h-8" />
                  </a>
                ))}

@@ -1,4 +1,4 @@
-import { Instagram, Github, Linkedin, MapPin, Mail, Phone, ArrowRight, Shield, Star, Zap } from 'lucide-react';
+import { Instagram, Linkedin, MapPin, Mail, Phone, ArrowRight, Shield, Star, Zap, Youtube } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
 
@@ -65,15 +65,17 @@ const Footer = () => {
             {/* Comic Book Social Icons */}
             <div className="flex space-x-2 sm:space-x-3">
               {[
-                { icon: Instagram, color: '#E1306C', href: '#', label: 'Instagram' },
-                { icon: Github, color: '#000000', href: 'https://github.com/RADXIshan/Synchronize-4.0', label: 'Github' },
-                { icon: Linkedin, color: '#0077B5', href: '#', label: 'LinkedIn' }
+                { icon: Instagram, color: '#E1306C', href: 'https://www.instagram.com/synchronize_xim?igsh=ZjF6NXpwbG82ZDgy', label: 'Instagram' },
+                { icon: Linkedin, color: '#0077B5', href: 'https://www.linkedin.com/company/xim-university/', label: 'LinkedIn' },
+                { icon: Youtube, color: '#FF0000', href: 'https://youtube.com/@synchronizexim?si=PXis2RtPVcj0mN7g', label: 'YouTube' }
               ].map((social, i) => {
                 const Icon = social.icon;
                 return (
                   <div key={i} className="relative group">
                     <a
                       href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="relative w-12 h-12 sm:w-14 sm:h-14 border-4 border-black comic-shadow flex items-center justify-center text-white hover:-translate-y-1 hover:scale-105 transition-all duration-200"
                       style={{ backgroundColor: social.color }}
                     >
@@ -158,9 +160,8 @@ const Footer = () => {
                   <div>
                     <h4 className="font-black text-black text-sm mb-1">HEADQUARTERS</h4>
                     <span className="text-xs text-black font-bold leading-tight">
-                      XIM UNIVERSITY<br />
-                      Nijigada, Kurki<br />
-                      Odisha 752050, India
+                      New Campus XIM University, <br />
+                      Plot No.: 12 (A), Nijigada, Kurki Harirajpur P.O - 752050, <br />Dist - Puri, Odisha
                     </span>
                   </div>
                 </div>
@@ -189,8 +190,11 @@ const Footer = () => {
                   </div>
                   <div>
                     <h4 className="font-black text-black text-sm mb-1">HOTLINE</h4>
-                    <span className="text-xs text-black font-bold">
-                      +91 6204-148753
+                    <span className="text-xs text-black font-bold block">
+                      +91 9007195462 (Ishan Roy)
+                    </span>
+                    <span className="text-xs text-black font-bold block mt-1">
+                      +91 9760319005 (Rhea Bachetti)
                     </span>
                   </div>
                 </div>
