@@ -258,24 +258,24 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
             
             {/* ROW 1: About Synchronize (Left-8) + Stats Stack (Right-4) */}
-            <ComicPanel panelType="hero" className="lg:col-span-8 about-panel p-6 md:p-8 h-full">
+            <ComicPanel panelType="hero" className="lg:col-span-8 about-panel p-4 sm:p-6 md:p-8 h-full">
               <div className="flex flex-col h-full">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-linear-to-br from-yellow-400 to-yellow-600 border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_#000] transform -rotate-6 panel-icon shrink-0">
-                    <Globe className="w-8 h-8 text-black" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-linear-to-br from-yellow-400 to-yellow-600 border-4 border-black flex items-center justify-center shadow-[4px_4px_0px_#000] transform -rotate-6 panel-icon shrink-0">
+                    <Globe className="w-6 h-6 sm:w-8 sm:h-8 text-black" />
                   </div>
                   <div>
-                    <h3 className="text-3xl sm:text-4xl font-black text-white font-display italic comic-text-stroke leading-none mb-1">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-display italic comic-text-stroke leading-none mb-1">
                       ABOUT SYNCHRONIZE
                     </h3>
                     <div className="h-1 bg-yellow-400 w-full" />
                   </div>
                 </div>
                 <div className="space-y-4 grow">
-                  <p className="text-gray-200 text-base leading-relaxed text-justify">
+                  <p className="text-gray-200 text-sm sm:text-base leading-relaxed text-left">
                     An annual technical celebration that highlights the latest advancements, innovations, and discoveries in science and technology. Organized by the students of the School of Computer Science and Engineering (SCSE) with strong guidance from faculty members, the fest creates a powerful platform for learning, innovation, and collaboration. It brings together industry professionals, technology enthusiasts, and students to share ideas, build connections, and experience technology beyond classrooms.
                   </p>
-                  <p className="text-gray-200 text-base leading-relaxed text-justify">
+                  <p className="text-gray-200 text-sm sm:text-base leading-relaxed text-left">
                      Supported by reputed organizations and sponsors, the fest aims to develop skilled talent, encourage innovation, and shape the future of the technology ecosystem. The fest features hackathons, robotics events, technical competitions, panel discussions, seminars, and exhibitions of emerging technologies.
                   </p>
                 </div>
@@ -283,7 +283,7 @@ const About = () => {
             </ComicPanel>
 
             <div className="lg:col-span-4 flex flex-col gap-6 lg:gap-8 h-full">
-              <ComicPanel panelType="stat" className="about-panel p-6 text-center flex-1 flex flex-col justify-center items-center">
+              <ComicPanel panelType="stat" className="about-panel p-4 sm:p-6 text-center flex-1 flex flex-col justify-center items-center">
                 <div className="w-14 h-14 bg-linear-to-br from-purple-500 to-purple-700 border-4 border-white flex items-center justify-center mb-4 shadow-[4px_4px_0px_#000] panel-icon">
                   <Users className="w-7 h-7 text-white" />
                 </div>
@@ -291,7 +291,7 @@ const About = () => {
                 <p className="text-purple-300 text-sm font-black uppercase tracking-widest">WARRIORS</p>
               </ComicPanel>
               
-              <ComicPanel panelType="stat" className="about-panel p-6 text-center flex-1 flex flex-col justify-center items-center">
+              <ComicPanel panelType="stat" className="about-panel p-4 sm:p-6 text-center flex-1 flex flex-col justify-center items-center">
                 <div className="w-14 h-14 bg-linear-to-br from-yellow-400 to-yellow-600 border-4 border-black flex items-center justify-center mb-4 shadow-[4px_4px_0px_#000] panel-icon">
                   <Trophy className="w-7 h-7 text-black" />
                 </div>
@@ -302,7 +302,7 @@ const About = () => {
 
             {/* ROW 2: Features Stack (Left-4) + About SCSE (Right-8) */}
             <div className="lg:col-span-4 flex flex-col gap-6 lg:gap-8 h-full order-2 lg:order-1">
-               <ComicPanel panelType="feature" className="about-panel p-6 flex-1 flex flex-col justify-center">
+               <ComicPanel panelType="feature" className="about-panel p-4 sm:p-6 flex-1 flex flex-col justify-center">
                 <div className="w-14 h-14 bg-linear-to-br from-purple-600 to-purple-800 border-4 border-purple-400 flex items-center justify-center mb-4 shadow-[3px_3px_0px_#9C27B0] transform -rotate-12 panel-icon">
                   <Cpu className="w-7 h-7 text-white" />
                 </div>
@@ -310,7 +310,7 @@ const About = () => {
                 <p className="text-gray-300 text-sm">Advanced tech challenges worthy of Wakanda's finest minds.</p>
               </ComicPanel>
 
-              <ComicPanel panelType="feature" className="about-panel p-6 flex-1 flex flex-col justify-center">
+              <ComicPanel panelType="feature" className="about-panel p-4 sm:p-6 flex-1 flex flex-col justify-center">
                 <div className="w-14 h-14 bg-linear-to-br from-purple-500 to-purple-700 border-4 border-yellow-400 flex items-center justify-center mb-4 shadow-[3px_3px_0px_#FFD700] panel-icon">
                   <Star className="w-7 h-7 text-white" />
                 </div>
@@ -319,24 +319,24 @@ const About = () => {
               </ComicPanel>
             </div>
 
-            <ComicPanel panelType="feature" className="lg:col-span-8 about-panel p-6 md:p-8 h-full order-1 lg:order-2">
+            <ComicPanel panelType="feature" className="lg:col-span-8 about-panel p-4 sm:p-6 md:p-8 h-full order-1 lg:order-2">
               <div className="flex flex-col h-full">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-linear-to-br from-purple-600 to-purple-800 border-4 border-purple-400 flex items-center justify-center shadow-[4px_4px_0px_#9C27B0] transform rotate-6 panel-icon shrink-0">
-                    <Code className="w-8 h-8 text-white" />
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-linear-to-br from-purple-600 to-purple-800 border-4 border-purple-400 flex items-center justify-center shadow-[4px_4px_0px_#9C27B0] transform rotate-6 panel-icon shrink-0">
+                    <Code className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
                    <div>
-                    <h3 className="text-3xl sm:text-4xl font-black text-white font-display italic mb-1">
+                    <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-display italic mb-1">
                       ABOUT SCSE
                     </h3>
                     <div className="h-1 bg-purple-400 w-full" />
                   </div>
                 </div>
                 <div className="space-y-4 grow">
-                  <p className="text-gray-300 text-base leading-relaxed text-justify">
+                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed text-left">
                     The School of Computer Science & Engineering is a unique school that leverages the high-quality programs of XIM University and emphasizes sound innovation, and entrepreneurship. It currently offers B.Tech. (Hons.) in Computer Science & Engineering, M.Tech. in Data Science & Analytics , and Ph.D. in Computer Science & Engineering.
                   </p>
-                  <p className="text-gray-300 text-base leading-relaxed text-justify">
+                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed text-left">
                     Its current faculty mostly has Ph.D. and/or postdoctoral experience from IITs/IISC or abroad. The founding Dean Prof. Priyadarsan Patra has a Ph.D. from The University of Texas at Austin and 20+ years of leadership experience at INTEL (USA). It is mentioned by Prof. Chitta Baral from Arizona State University, Prof. Prasant Mohapatra from The University of California Davis and Dr. Ashutosh Dutta of Johns Hopkins University.
                   </p>
                 </div>
@@ -344,7 +344,7 @@ const About = () => {
             </ComicPanel>
 
             {/* ROW 3: Full Width CTA (Order 3) */}
-            <ComicPanel panelType="hero" className="lg:col-span-12 about-panel p-6 md:p-8 bg-linear-to-br from-purple-600 via-purple-700 to-black order-3">
+            <ComicPanel panelType="hero" className="lg:col-span-12 about-panel p-4 sm:p-6 md:p-8 bg-linear-to-br from-purple-600 via-purple-700 to-black order-3">
               <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                   <h4 className="text-3xl sm:text-5xl font-black text-white mb-2 font-display italic comic-text-stroke">
