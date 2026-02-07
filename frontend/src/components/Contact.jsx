@@ -14,6 +14,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -173,6 +174,19 @@ const Contact = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="agent@shield.gov"
+                  className="w-full bg-black border-2 border-gray-700 focus:border-red-500 p-4 text-white placeholder-gray-600 outline-none transition-all font-mono"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-red-500 font-black uppercase tracking-widest text-sm">Secure Line</label>
+                <input 
+                  type="tel" 
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+91 98765 43210"
                   className="w-full bg-black border-2 border-gray-700 focus:border-red-500 p-4 text-white placeholder-gray-600 outline-none transition-all font-mono"
                   required
                 />

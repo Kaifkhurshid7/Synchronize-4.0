@@ -92,7 +92,7 @@ const EventDetailsCard = ({ event, onClose }) => {
           {/* Title Box - Overlapping */}
           <div className="absolute -bottom-6 left-6 z-30">
             <div className="bg-iron-gold border-4 border-black px-6 py-2 shadow-[8px_8px_0px_#000] transform -rotate-2">
-              <h2 className="text-3xl sm:text-5xl font-display font-black text-[#AA0505] italic uppercase whitespace-nowrap" style={{ WebkitTextStroke: '1.5px black' }}>
+              <h2 className="text-3xl sm:text-5xl font-display font-black text-[#AA0505] italic uppercase whitespace-pre-line" style={{ WebkitTextStroke: '1.5px black' }}>
                 {event.title}
               </h2>
             </div>
@@ -153,28 +153,45 @@ const EventDetailsCard = ({ event, onClose }) => {
                       <User className="text-white w-6 h-6" />
                    </div>
                    <div>
-                      <p className="text-xs font-black uppercase text-gray-500">Contact</p>
-                      <p className="font-bold text-black text-lg">{event.poc.name}</p>
+                      <p className="text-xs font-black uppercase text-gray-500">Contact <span className="text-[#AA0505] ml-2 font-bold">{event.poc.phone}</span></p>
+                      <p className="font-bold text-black text-lg leading-tight">{event.poc.name}</p>
                    </div>
                 </div>
                 <a href={`mailto:${event.poc.email}`} className="px-4 py-2 bg-black text-white font-bold text-sm hover:bg-[#AA0505] transition-colors border-2 border-transparent hover:border-black uppercase">
-                   Signal Comms
+                   Email Us
                 </a>
              </div>
              
-             {/* Register Button - Action */}
-             <a
-               href={event.registrationLink || "#"}
-               target="_blank"
-               rel="noopener noreferrer"
-               className="block w-full"
-             >
-               <button className="w-full py-4 bg-thor-blue border-4 border-black font-display font-black text-2xl text-white uppercase italic tracking-wider shadow-[8px_8px_0px_#000] hover:translate-y-[-4px] hover:shadow-[12px_12px_0px_#000] hover:bg-[#00E5FF] transition-all transform -skew-x-6">
-                  <span className="inline-block skew-x-6 drop-shadow-[2px_2px_0px_#000]">
-                     ENLIST NOW!
-                  </span>
-               </button>
-             </a>
+             {/* Action Buttons - Dual Grid */}
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Register Button */}
+                <a
+                  href={event.registrationLink || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full"
+                >
+                  <button className="w-full py-4 bg-thor-blue border-4 border-black font-display font-black text-xl sm:text-2xl text-white uppercase italic tracking-wider shadow-[6px_6px_0px_#000] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_#000] hover:bg-[#00E5FF] transition-all transform -skew-x-6">
+                     <span className="inline-block skew-x-6 drop-shadow-[2px_2px_0px_#000]">
+                        REGISTER NOW
+                     </span>
+                  </button>
+                </a>
+
+                {/* Rulebook Button */}
+                <a
+                  href={event.rulebook || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full"
+                >
+                  <button className="w-full py-4 bg-iron-gold border-4 border-black font-display font-black text-xl sm:text-2xl text-black uppercase italic tracking-wider shadow-[6px_6px_0px_#000] hover:translate-y-[-4px] hover:shadow-[10px_10px_0px_#000] hover:bg-[#FFD700] transition-all transform -skew-x-6">
+                     <span className="inline-block skew-x-6">
+                        DOWNLOAD RULEBOOK
+                     </span>
+                  </button>
+                </a>
+             </div>
 
           </div>
         </div>

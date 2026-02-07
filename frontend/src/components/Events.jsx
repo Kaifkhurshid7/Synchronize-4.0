@@ -17,7 +17,8 @@ const eventsData = [
     venue: "Computer Lab A / Online",
     prize: "₹50,000",
     registrationLink: "https://forms.google.com/placeholder",
-    poc: { name: "Arjun Mehta", email: "arjun.mehta@techfest.com" }
+    rulebook: "#",
+    poc: { name: "Arjun Mehta", email: "arjun.mehta@techfest.com", phone: "+91 90089 398" }
   },
   { 
     title: "Robo War", 
@@ -29,7 +30,8 @@ const eventsData = [
     venue: "Arena Ground",
     prize: "₹60,000",
     registrationLink: "https://forms.google.com/placeholder",
-    poc: { name: "Aditya Kumar", email: "aditya.kumar@techfest.com" }
+    rulebook: "#",
+    poc: { name: "Aditya Kumar", email: "aditya.kumar@techfest.com", phone: "+91 90089 398" }
   },
   { 
     title: "BGMI Championship", 
@@ -41,7 +43,8 @@ const eventsData = [
     venue: "Gaming Zone",
     prize: "₹20,000",
     registrationLink: "https://forms.google.com/placeholder",
-    poc: { name: "Ishita Joshi", email: "ishita.joshi@techfest.com" }
+    rulebook: "#",
+    poc: { name: "Ishita Joshi", email: "ishita.joshi@techfest.com", phone: "+91 90089 398" }
   },
   { 
     title: "Dance Competition", 
@@ -53,7 +56,8 @@ const eventsData = [
     venue: "Auditorium",
     prize: "₹25,000",
     registrationLink: "https://forms.google.com/placeholder",
-    poc: { name: "Siddharth Rao", email: "siddharth.rao@techfest.com" }
+    rulebook: "#",
+    poc: { name: "Siddharth Rao", email: "siddharth.rao@techfest.com", phone: "+91 90089 398" }
   },
   { 
     title: "TechTank", 
@@ -65,7 +69,8 @@ const eventsData = [
     venue: "Conference Hall",
     prize: "₹50,000 + Funding",
     registrationLink: "https://forms.google.com/placeholder",
-    poc: { name: "Anjali Gupta", email: "anjali.gupta@techfest.com" }
+    rulebook: "#",
+    poc: { name: "Anjali Gupta", email: "anjali.gupta@techfest.com", phone: "+91 90089 398" }
   }
 ];
 
@@ -215,7 +220,7 @@ const Events = () => {
                   <span className="skew-x-12 inline-block">{event.category}</span>
                 </div>
 
-                <h3 className="text-3xl sm:text-5xl md:text-7xl font-display font-black text-white mb-2 sm:mb-4 transition-all duration-300 italic" style={{ WebkitTextStroke: '1px black', textShadow: '2px 2px 0px #AA0505' }}>
+                <h3 className="text-3xl sm:text-5xl md:text-7xl font-display font-black text-white mb-2 sm:mb-4 transition-all duration-300 italic whitespace-pre-line" style={{ WebkitTextStroke: '1px black', textShadow: '2px 2px 0px #AA0505' }}>
                   {event.title}
                 </h3>
                 
