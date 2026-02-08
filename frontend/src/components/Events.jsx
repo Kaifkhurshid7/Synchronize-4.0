@@ -16,7 +16,7 @@ const eventsData = [
     day: [1, 2],
     venue: "CR 301, 302 3rd Floor NAB ( XIM UNIVERSITY)/ Online",
     prize: "₹20,000",
-    registrationLink: "https://forms.google.com/placeholder",
+    registrationLink: "https://forms.gle/t1Prh43tXZpC7Pra9",
     rulebook: "#",
     poc: { name: "Colin Michael D Rozario", email: "ucse23015@stu.xim.edu.in", phone: "+91 63740 35116" }
   },
