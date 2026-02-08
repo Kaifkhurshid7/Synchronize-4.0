@@ -14,11 +14,11 @@ const eventsData = [
     description: "24-hour technical marathon where teams build innovative solutions to real-world problems. Mentorship and resources provided.",
     date: "February 15-16, 2026",
     day: [1, 2],
-    venue: "Computer Lab A / Online",
-    prize: "₹50,000",
+    venue: "CR 301, 302 3rd Floor NAB ( XIM UNIVERSITY)/ Online",
+    prize: "₹20,000",
     registrationLink: "https://forms.google.com/placeholder",
     rulebook: "#",
-    poc: { name: "Arjun Mehta", email: "arjun.mehta@techfest.com", phone: "+91 90089 398" }
+    poc: { name: "Colin Michael D Rozario", email: "ucse23015@stu.xim.edu.in", phone: "+91 63740 35116" }
   },
   { 
     title: "Robo War", 
@@ -38,13 +38,13 @@ const eventsData = [
     category: "Esports", 
     image: "https://images.unsplash.com/photo-1556438064-2d7646166914?auto=format&fit=crop&q=80&w=800",
     description: "Battle it out in mobile gaming tournaments featuring BGMI. Squad up and win.",
-    date: "February 16, 2026",
+    date: "February 27TH, 2026",
     day: 2,
-    venue: "Gaming Zone",
-    prize: "₹20,000",
-    registrationLink: "https://forms.google.com/placeholder",
+    venue: "E.H 2 4th Floor,NAB (XIM UNIVERSITY)",
+    prize: "₹15,000",
+    registrationLink: "https://forms.gle/WeP6kywxrRHzcCS67",
     rulebook: "#",
-    poc: { name: "Ishita Joshi", email: "ishita.joshi@techfest.com", phone: "+91 90089 398" }
+    poc: { name: "ADITYA RAH MISRA", email: "ucse24005@stu.xim.edu.in", phone: "+91 7047533803" }
   },
   { 
     title: "Dance Competition", 
@@ -60,17 +60,17 @@ const eventsData = [
     poc: { name: "Siddharth Rao", email: "siddharth.rao@techfest.com", phone: "+91 90089 398" }
   },
   { 
-    title: "TechTank", 
+    title: "Innovators Assemble for TechTank", 
     category: "Entrepreneurship", 
     image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=800",
-    description: "Pitch your innovative startup ideas to a panel of judges and winning funding.",
-    date: "February 17, 2026",
+    description: "It is a team entrepreneurship event to pitch technical startup ideas in front of a panel",
+    date: "February 27th, 2026",
     day: 3,
-    venue: "Conference Hall",
-    prize: "₹50,000 + Funding",
-    registrationLink: "https://forms.google.com/placeholder",
+    venue: "Seminar Hall",
+    prize: "₹5,000",
+    registrationLink: "https://forms.gle/yQRN7T6bmLafXY4X6",
     rulebook: "#",
-    poc: { name: "Anjali Gupta", email: "anjali.gupta@techfest.com", phone: "+91 90089 398" }
+    poc: { name: "Vrinda Patnaik", email: "ucse23064@stu.xim.edu.in", phone: "+91 7205045510" }
   }
 ];
 
