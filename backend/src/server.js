@@ -12,7 +12,8 @@ const app = express();
 
 const origins = [
     CLIENT_URL,
-    "https://synchronize-4.vercel.app"
+    "https://synchronize-4.vercel.app",
+    "https://synchronize-xim.in"
 ]
 
 app.use(cors(
