@@ -147,19 +147,54 @@ const EventDetailsCard = ({ event, onClose }) => {
              </div>
 
              {/* POC Section - Comic Box */}
-             <div className="border-3 border-black bg-white p-4 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-[5px_5px_0px_#000]">
-                <div className="flex items-center gap-3">
-                   <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center border-2 border-iron-gold">
-                      <User className="text-white w-6 h-6" />
+             <div className="border-3 border-black bg-white p-4 mb-8 shadow-[5px_5px_0px_#000]">
+                <div className="flex flex-col gap-4 mb-4">
+                {Array.isArray(event.poc) ? (
+                   event.poc.map((person, index) => (
+                      <div key={index} className="flex items-center justify-between gap-3 border-b-2 last:border-b-0 border-dashed border-gray-300 pb-2 last:pb-0">
+                         <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center border-2 border-iron-gold shrink-0">
+                               <User className="text-white w-6 h-6" />
+                            </div>
+                            <div>
+                               <p className="text-xs font-black uppercase text-gray-500">Contact <span className="text-[#AA0505] ml-2 font-bold">{person.phone}</span></p>
+                               <p className="font-bold text-black text-lg leading-tight">{person.name}</p>
+                               {person.email && <p className="text-xs font-bold text-gray-600 truncate max-w-[200px] sm:max-w-none">{person.email}</p>}
+                            </div>
+                         </div>
+                         {person.email && (
+                            <a href={`mailto:${person.email}`} className="px-3 py-1 bg-black text-white text-xs font-black uppercase border-2 border-transparent hover:bg-[#AA0505] hover:border-black transition-all shadow-[2px_2px_0px_#ccc] hover:shadow-[3px_3px_0px_#000] transform hover:-rotate-2 shrink-0">
+                               Email
+                            </a>
+                         )}
+                      </div>
+                   ))
+                ) : (
+                   <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-3">
+                         <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center border-2 border-iron-gold shrink-0">
+                            <User className="text-white w-6 h-6" />
+                         </div>
+                         <div>
+                            <p className="text-xs font-black uppercase text-gray-500">Contact <span className="text-[#AA0505] ml-2 font-bold">{event.poc.phone}</span></p>
+                            <p className="font-bold text-black text-lg leading-tight">{event.poc.name}</p>
+                            {event.poc.email && <p className="text-xs font-bold text-gray-600 truncate max-w-[200px] sm:max-w-none">{event.poc.email}</p>}
+                         </div>
+                      </div>
+                      {event.poc.email && (
+                         <a href={`mailto:${event.poc.email}`} className="px-3 py-1 bg-black text-white text-xs font-black uppercase border-2 border-transparent hover:bg-[#AA0505] hover:border-black transition-all shadow-[2px_2px_0px_#ccc] hover:shadow-[3px_3px_0px_#000] transform hover:-rotate-2 shrink-0">
+                            Email
+                         </a>
+                      )}
                    </div>
-                   <div>
-                      <p className="text-xs font-black uppercase text-gray-500">Contact <span className="text-[#AA0505] ml-2 font-bold">{event.poc.phone}</span></p>
-                      <p className="font-bold text-black text-lg leading-tight">{event.poc.name}</p>
-                   </div>
+                )}
                 </div>
-                <a href={`mailto:${event.poc.email}`} className="px-4 py-2 bg-black text-white font-bold text-sm hover:bg-[#AA0505] transition-colors border-2 border-transparent hover:border-black uppercase">
-                   Email Us
-                </a>
+                
+                {(Array.isArray(event.poc) ? !event.poc.some(p => p.email) : !event.poc.email) && (
+                    <a href="mailto:techfest-scse@xim.edu.in" className="block w-full text-center px-4 py-3 bg-black text-white font-black text-lg hover:bg-[#AA0505] transition-colors border-2 border-transparent hover:border-black uppercase shadow-[2px_2px_0px_#ccc] hover:shadow-[4px_4px_0px_#000] hover:-translate-y-1 transform">
+                       Email Us For Queries
+                    </a>
+                )}
              </div>
              
              {/* Action Buttons - Dual Grid */}
