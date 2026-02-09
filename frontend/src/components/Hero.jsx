@@ -242,12 +242,14 @@ const Hero = () => {
 
         <div ref={buttonsRef} className="mt-8 sm:mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6 pointer-events-auto opacity-0 w-full sm:w-auto items-start">
           {/* Primary Action Button - Captain America Blue */}
-          <MagneticButton className="w-full sm:w-auto cursor-pointer px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 bg-[#0055AA] text-white font-black text-sm sm:text-lg md:text-xl rounded-none border-3 sm:border-4 border-white shadow-[4px_4px_0px_#AA0505] sm:shadow-[6px_6px_0px_#AA0505] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#AA0505] sm:hover:shadow-[8px_8px_0px_#AA0505] transition-all clip-path-slant group">
-             <span className="relative z-10 flex items-center justify-center gap-2">
-                REGISTER NOW
-                <Star className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-             </span>
-          </MagneticButton>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfITsuNAITuG-AZ1kyIbFqR0VNw1zJPbjMvxCkJU84PwPl9uA/viewform?pli=1" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
+            <MagneticButton className="w-full sm:w-auto cursor-pointer px-6 py-3 sm:px-8 sm:py-4 md:px-10 md:py-5 bg-[#0055AA] text-white font-black text-sm sm:text-lg md:text-xl rounded-none border-3 sm:border-4 border-white shadow-[4px_4px_0px_#AA0505] sm:shadow-[6px_6px_0px_#AA0505] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_#AA0505] sm:hover:shadow-[8px_8px_0px_#AA0505] transition-all clip-path-slant group">
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                  REGISTER NOW
+                  <Star className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
+              </span>
+            </MagneticButton>
+          </a>
           
           {/* Secondary Action - White/Red */}
           <Link to="/gallery" className="w-full sm:w-auto">
