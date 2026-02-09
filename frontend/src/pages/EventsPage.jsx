@@ -202,7 +202,7 @@ const eventsData = {
         day: 1,
         venue: "Campus Wide",
         prize: "Gifts and Rewards",
-        registrationLink: "https://forms.gle/yQRN7T6bmLafXY4X6",
+        registrationLink: "https://forms.gle/FaKweSfLLVxs8Xdw7",
         rulebook: "#",
         poc: [
           { name: "Manish Ghatuary", email: "ucse24065@stu.xim.edu.in", phone: "+91 7008650074" },
