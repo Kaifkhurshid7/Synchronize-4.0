@@ -44,7 +44,7 @@ const eventsData = [
     prize: "₹15,000",
     registrationLink: "https://forms.gle/WeP6kywxrRHzcCS67",
     rulebook: "#",
-    poc: { name: "ADITYA RAH MISRA", email: "ucse24005@stu.xim.edu.in", phone: "+91 7047533803" }
+    poc: { name: "Aditya Raj Mishra", email: "ucse24005@stu.xim.edu.in", phone: "+91 7047533803" }
   },
   { 
     title: "Rhythm of Realms", 
@@ -53,9 +53,9 @@ const eventsData = [
     description: "The “Icons of Dance” competition celebrates legendary dancers and iconic styles from around the world,offering a platform to showcase creativity, technique, and expression.",
     date: "February 28th, 2026",
     day: 3,
-    venue: "Auditorium",
+    venue: "Mini Auditorium",
     prize: "₹5,000",
-    registrationLink: "https://forms.google.com/placeholder",
+    registrationLink: "https://forms.gle/ME2iBpZysaXRK42K6",
     rulebook: "#",
     poc: { name: "Deekhita Bohidar", email: "ucse24020@stu.xim.edu.in", phone: "+91 7847919776" }
   },

@@ -105,9 +105,9 @@ const eventsData = {
       image: "https://images.unsplash.com/photo-1545959952-4744413158e9?auto=format&fit=crop&q=80&w=800",
       date: "February 28th, 2026",
       day: 3,
-      venue: "Auditorium",
+      venue: "Mini Auditorium",
       prize: "₹5,000",
-      registrationLink: "#",
+      registrationLink: "https://forms.gle/ME2iBpZysaXRK42K6",
       rulebook: "#",
       poc: { name: "Deekhita Bohidar", email: "ucse24020@stu.xim.edu.in", phone: "+91 7847919776" }
     },
@@ -119,7 +119,7 @@ const eventsData = {
       image: "https://images.unsplash.com/photo-1516280440614-6697288d5d38?auto=format&fit=crop&q=80&w=800",
       date: "February 28, 2026",
       day: 3,
-      venue: "Main Stage",
+      venue: "Mini Auditorium",
       prize: "₹5,000",
       registrationLink: "#",
       rulebook: "#",
@@ -142,7 +142,7 @@ const eventsData = {
       prize: "₹15,000",
       registrationLink: "https://forms.gle/WeP6kywxrRHzcCS67",
       rulebook: "#",
-      poc: { name: "ADITYA RAJ MISRA", email: "ucse24005@stu.xim.edu.in", phone: "+91 7047533803" }
+      poc: { name: "Aditya Raj Mishra", email: "ucse24005@stu.xim.edu.in", phone: "+91 7047533803" }
     },
     {
       id: 9,
@@ -154,7 +154,7 @@ const eventsData = {
       day: 2,
       venue: "Gaming Arena",
       prize: "₹3,000",
-      registrationLink: "#",
+      registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSeENEEVG4yIJ3a76ft5JoDDEbJEaJOsvsrvDO2jiVyVcYSrGw/viewform",
       rulebook: "#",
       poc: { name: "Ishan Roy", email: "ucse23026@stu.xim.edu.in", phone: "+91 9007195462" }
     }
