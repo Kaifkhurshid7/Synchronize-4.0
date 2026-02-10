@@ -169,7 +169,7 @@ const eventsData = {
       date: "February 27-28, 2026",
       day: [2, 3],
       venue: "Sports Complex",
-      prize: "₹20,000",
+      prize: "₹5,000",
       registrationLink: "https://docs.google.com/forms/d/e/1FAIpQLSfn2DQWpyzadiZzy8QQRbfLTunZYGqoNwwkvyrmatYTEF5eUQ/viewform?usp=header",
       rulebook: "#",
       poc: { name: "Sourav Sekhar Samal", email: "ucse24059@stu.xim.edu.in", phone: "+91 7847958312" }
